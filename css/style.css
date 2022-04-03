@@ -1,0 +1,511 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@400;500;600&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --bg1: #151828;
+    --bg2: #1b1f34;
+    --body:#959DCC;
+    --brand:#FFAB76;
+    --white:#fff;
+}
+
+body { 
+    /* font-family: "Inter" 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    color: var(--body);
+    line-height: 1.8;
+    background-color: var(--bg1);
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Dela Gothic One", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+}
+/* List-Menu */
+li.nav-dropdown{
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    position: relative;
+    padding: 8px 7px 0 7px;
+
+}
+li.nav-dropdown:hover{
+    color: #FFAB76;
+}
+
+li.nav-dropdown:hover .nav__item{
+    display: block;
+}
+
+li.nav-dropdown .nav__item{
+    display: none;
+}
+
+ul.nav__item{
+    position: absolute;
+    list-style: none;
+    top: 100%;
+    height: auto;
+    width: 220px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease;
+}
+
+.menu i{
+    font-size: 20px;
+    color: #fff;
+    margin-top: 20px;
+    /* line-height: 95px; */
+    padding-left: 35px;
+    /* padding-top: 40px; */
+}
+/* List-Menu */
+
+
+/* Menu Icon */
+
+.menu__translate{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+/* Menu Icon */
+a{
+    color: var(--body);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.4s ease;
+}
+
+ul.nav__item > .nav-item{
+    margin-left: -10px;
+}
+
+a:hover{
+    color: var(--brand);
+}
+
+.logo{
+    height: 70px;
+    width: 90px;
+}
+
+.link-more{
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    left: 1px;
+}
+
+.link-more .icon{
+    transition: all 0.4s ease;
+}
+
+.link-more:hover .icon{
+    transform: translateX(8px);
+}
+img{
+    width: 100%;
+}
+section{
+    padding-top: 160px;
+    padding-bottom: 160px;
+}
+/* intro */
+.intro{
+    margin-bottom: 60px;
+}
+
+.intro h1{
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.intro h6{
+    color: var(--brand);
+}
+
+.intro p{
+    max-width: 550px;
+    margin: auto;
+}
+
+
+/* NAVBAR */
+
+.navbar{
+    background-color: rgb(24, 22, 22) ;
+}
+.narbar_brand{
+    font-family: "Dela Gothic One", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 32px;
+}
+
+.nav-link{
+    text-transform: uppercase;
+    color: var(--white);
+}
+.nav-link:hover{
+    color: var(--brand);
+    transition: all 0.4s ease;
+}
+
+.navbar-brand img{
+    width: 100%;
+}
+
+/* Hero */
+#hero .carousel-item img{
+    height: 100%;
+    width: 100%;
+}
+
+#hero{
+    padding-top: 95px;
+    padding-bottom: 160px;
+    background-color: var(--bg2);
+}
+
+
+#carouseId{
+    position: absolute;
+}
+
+
+/* Hero */
+
+/* BTN */
+.btn{
+    padding: 16px 36px;
+    font-family: "Dela Gothic One", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.4s ease;
+    border-radius: 0;
+}
+.btn-brand{
+    background-color: var(--brand);
+}
+.btn-brand:hover{
+    background-color: transparent;
+    color: var(--brand);
+    border-color: var(--brand);
+}
+.btn-outline-brand{
+    background-color: transparent;
+    color: var(--brand);
+    border-color: var(--brand);
+}
+.btn-outline-brand:hover{
+    background-color: var(--brand);
+}
+
+/* About */
+#about{
+    position: relative;
+}
+
+#about::after{
+    content: "";
+    width:25%;
+    height: 100%;
+    background-color: var(--brand);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#about h6{
+    color: var(--brand);
+}
+
+#about h1{
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+#about .signature{
+    width: unset;
+}
+
+/* services */
+#services{
+    background:var(--bg2);
+}
+
+#services .service .content{
+    padding: 32px;
+}
+
+#services .service p{
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+#service img{
+    height: 292px;
+    width: 416px;
+}
+
+/* MILESTONE */
+
+#milestone{
+    background:linear-gradient(to right, rgba(27,31,52,0.2),rgba(27,31,52,0.8)), url(../img/cover_2.jpg) ;
+    background-size: cover;
+    background-position: center;
+
+}
+
+#milestone h1{
+    color: var(--brand);
+}
+
+/* Features */
+#features{
+    background-color: var(--bg1);
+}
+.feature{
+    display: flex;
+}
+
+.feature .icon-feature{
+    font-size: 36px;
+    color: var(--brand);
+    line-height: 1;
+    margin-right: 16px;
+}
+
+.feature p{
+    font-size: 14px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+/* Socials icon */
+
+.social-links a{
+    width: 48px;
+    height: 42px;
+    background-color: var(--bg2);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.social-links a:hover{
+    background-color: var(--brand);
+    color: var(--bg1);
+}
+
+/* Team */
+
+#team{
+    background-color: var(--bg1);
+}
+
+
+ .team-member{
+    height: 430px;
+    width: 300px;
+    background-color: #1b1f34;
+    overflow: hidden;
+    border-radius: 10px;
+    text-align: center;
+}
+.team-member .img{
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    margin: 0 auto;
+    transform: translateY(20px);
+}
+
+.team-member .img:hover{
+    height: 100%;
+    width: 100%;
+    border-radius: unset;
+    overflow: hidden;
+    border: unset;
+    transform: none;
+}
+
+.team-member img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.team-member img:hover{
+    overflow: hidden;
+}
+
+.team-member h5{
+    padding-top: 40px;
+    color: #FFAB76;
+}
+
+.team-member p {
+    font-size: 16px ;
+    color: #fff;
+    font-weight: 500;
+}
+
+.social-links a{
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+}
+.social-links{
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    padding: 20px 40px;
+}
+
+.team-member button{
+    padding: 5px 10px;
+    
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #fff; 
+    border:unset;
+    outline: none;
+    font-weight: 600;
+    background-color: #FFAB76;
+    color: #000;
+}
+
+.team-member button:hover{
+    background-color: #fff;
+    color: #000;
+}
+/* Team Fix */
+/* REVIEWS */
+
+#reviews{
+    background-color: var(--bg1);
+}
+
+.reviews {
+    padding: 32px;
+    background-color: var(--bg2);
+    position: relative;
+}
+
+.reviews .icon{
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--brand);
+    color: var(--bg1);
+    border-radius: 100px;
+    position: absolute;
+    right: 32px;
+    top: 0;
+}
+
+.reviews img{
+    width: 70px;
+    border-radius: 100px;
+}
+
+
+/* blog */
+.blog{
+    background-color: var(--bg2);
+}
+
+.blog-post{
+    position: relative;
+}
+
+.blog-post .date{
+    width: 90px;
+    height: 90px;
+    background-color: var(--brand);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.blog-post .day{
+    font-size: 32px;
+    line-height: 1;
+    color: var(--bg1);
+    font-family: "Dela Gothic One", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.blog-post .year{
+    color: var(--bg1);
+}
+
+
+/* Booking */
+#booking{
+    background:linear-gradient(to right, rgba(27,31,52,0.2),rgba(27,31,52,0.8)), url(../img/cover_2.jpg) ;
+    background-size: cover;
+    background-position: center;
+}
+
+#booking form{
+    background-color: var(--bg1);
+    padding: 32px;
+}
+
+#booking form .form-control{
+    background-color: var(--bg2);
+    border-radius: 0;
+    margin-top: 16px;
+    border-color: var(--bg2);
+    border: 2px solid var(--bg2);
+    color: var(--body);
+}
+
+#booking form input{
+    height: 58px;
+}
+#booking form .form-control:focus{
+    box-shadow: none;
+    border-left-color: var(--brand);
+}
+
+
+/* FOOTER */
+footer{
+    padding-top: 160px;
+}
+
+footer .social-links {
+    display: flex;
+}
+
+footer .social-links a{
+    margin-right: 5px;
+}
+
+.footer-top{
+    padding-bottom: 30px;
+}
+.footer-bottom{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-top: 1px solid var(--bg2);
+}
