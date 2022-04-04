@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@400;500;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap');
 *{
     padding: 0;
     margin: 0;
@@ -18,6 +18,20 @@ body {
     color: var(--body);
     line-height: 1.8;
     background-color: var(--bg1);
+    /* font-family: "Dancing Script"; */
+}
+
+ul{
+    list-style: none;
+}
+
+.text-color{
+    color: var(--brand);
+    font-family: "Dancing Script";
+}
+
+a{
+    text-decoration: none;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -118,27 +132,30 @@ img{
     width: 100%;
 }
 section{
-    padding-top: 160px;
-    padding-bottom: 160px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* HERO */
+#hero{
+    padding-top: 95px;
+    padding-bottom: 1px;
+    background-color: var(--bg2);
+}
+/* HERO */
+
+/* intro */
+#intro{
+    padding: 20px 0;
+    background-color: #0e1122;
+}
+
+p{
+    color: #fff;
+    font-weight: 100;
 }
 /* intro */
-.intro{
-    margin-bottom: 60px;
-}
 
-.intro h1{
-    margin-top: 16px;
-    margin-bottom: 16px;
-}
-
-.intro h6{
-    color: var(--brand);
-}
-
-.intro p{
-    max-width: 550px;
-    margin: auto;
-}
 
 
 /* NAVBAR */
@@ -169,13 +186,6 @@ section{
     height: 100%;
     width: 100%;
 }
-
-#hero{
-    padding-top: 95px;
-    padding-bottom: 160px;
-    background-color: var(--bg2);
-}
-
 
 #carouseId{
     position: absolute;
@@ -237,6 +247,84 @@ section{
     width: unset;
 }
 
+
+/* Trending */
+#trending{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#trending h4{
+    line-height: 60px;
+}
+
+#trending i{
+    color: #d0cdcd;
+    font-size: 40px;
+    font-family: "Dancing Script";
+    font-weight: bold;
+}
+
+#trending p{
+    color: var(--white);
+    font-size: 18px;
+    line-height: 45px;
+    font-weight: 300;
+}
+
+#trending button{
+    padding: 10px 25px;
+    margin-top: 30px;
+    border: 2px solid var(--brand);
+    background-color: transparent;
+    outline: none;
+    color: var(--brand);
+    font-weight: bold;
+    overflow: hidden;
+    font-family: "Dancing Script";
+    border-radius: 3px;
+}
+
+#trending button:hover{
+    color: #000;
+    background-color: var(--brand);
+}
+
+#trending img{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: 3px solid #7a7c84;
+    box-shadow: 0px 0px 0px -5px rgba(255, 255, 255, 0.6);
+}
+
+/* #trending img:hover{
+    transform: rotateX(180deg);
+} */
+
+#trending p.item{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--brand);
+    font-family: "Dancing Script";
+    text-transform: uppercase;
+}
+
+#trending .trending-item{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    transition: 2s ease-in;
+}
+
+#trending .trending-item:hover{
+    transform: rotateY(360deg);
+}
+
+/* Trending */
+
 /* services */
 #services{
     background:var(--bg2);
@@ -269,9 +357,96 @@ section{
     color: var(--brand);
 }
 
+
+/* PRODUCT */
+#product{
+    background-color: var(--bg1);
+}
+.product__top{
+    display: flex;
+    justify-content: space-between;
+}
+
+#product button{
+    padding: 5px 20px;
+    color: var(--brand);
+    font-size: 30px;
+    font-weight: 500;
+    border-radius: 5px;
+    font-family: "Dancing Script";
+    /* font-family: "Dela Gothic One", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    border: 2px solid var(--brand);
+    background-color: transparent;
+    transition: 0.3s ease-in
+}
+
+#product button:hover{
+    background-color: var(--brand);
+    color: #212529;
+}
+
+
+#product .col-lg-3{
+    max-width: 100%;
+}
+
+button.slick-prev{
+    overflow: hidden;
+}
+
+button.slick-next{
+    overflow: hidden;
+}
+
+#product > div > div > div.product-bottom.slick-initialized.slick-slider > button.slick-prev.slick-arrow{
+    border:none;
+}
+
+#product > div > div > div.product-bottom.slick-initialized.slick-slider > button.slick-prev.slick-arrow:hover{
+    background-color: transparent;
+}
+#product > div > div > div.product-bottom.slick-initialized.slick-slider > button.slick-next.slick-arrow{
+    border: none;
+}
+
+#product > div > div > div.product-bottom.slick-initialized.slick-slider > button.slick-next.slick-arrow:hover{
+    background-color: transparent;
+}
+
+
+#product .col-lg-3 p{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    height: 30px;
+}
+
+#product ul.price{
+    display: flex;
+    justify-content: space-between;
+    margin-left: -20px;
+    margin-right: 10px;
+    height: 30px;
+    line-height: 40px;
+}
+
+li.price-now{
+    color: #fff;
+}
+
+#product button.buy{
+    height: 50px;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+/* PRODUCT */
+
 /* Features */
 #features{
-    background-color: var(--bg1);
+    background-color: var(--bg2);
 }
 .feature{
     display: flex;
@@ -376,9 +551,8 @@ section{
 
 .team-member button{
     padding: 5px 10px;
-    
     font-size: 20px;
-    border-radius: 5px;
+    border-radius: 2px;
     border: 1px solid #fff; 
     border:unset;
     outline: none;
@@ -395,7 +569,7 @@ section{
 /* REVIEWS */
 
 #reviews{
-    background-color: var(--bg1);
+    background-color: var(--bg2);
 }
 
 .reviews {
@@ -409,17 +583,18 @@ section{
     height: 42px;
     display: flex;
     justify-content: center;
+    text-align: center;
+    align-items: center;
     background-color: var(--brand);
     color: var(--bg1);
     border-radius: 100px;
     position: absolute;
     right: 32px;
-    top: 0;
 }
 
 .reviews img{
     width: 70px;
-    border-radius: 100px;
+    border-radius: 50%;
 }
 
 
@@ -428,9 +603,14 @@ section{
     background-color: var(--bg2);
 }
 
+
 .blog-post{
     position: relative;
 }
+
+.blog-post:hover .icon{
+    display: block;
+} 
 
 .blog-post .date{
     width: 90px;
@@ -457,6 +637,18 @@ section{
     color: var(--bg1);
 }
 
+.icon{
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    display: none;
+    transition: 0.5s ease-in;
+}
+
+.icon a{
+    margin-bottom: 10px;
+}
 
 /* Booking */
 #booking{
@@ -479,6 +671,42 @@ section{
     color: var(--body);
 }
 
+
+.row > .row{
+    margin-left: 0px;
+}
+input.col-5{
+    background-color: var(--bg2);
+    outline: none;
+    border: none;
+    color: var(--body);
+}
+
+input.col-5:focus{
+    border-left: 2px solid #FFAB76;
+}
+select.col-3{
+    background-color: var(--bg2);
+    border: none;
+    outline: none;
+    color: var(--body);
+    padding-left: 2px;
+    margin-left: 26px;
+    outline: hidden;
+    overflow: hidden;
+}
+
+select.col-3:focus{
+    border-left: 2px solid #FFAB76;
+}
+
+option{
+    outline: none;
+}
+
+
+
+
 #booking form input{
     height: 58px;
 }
@@ -488,9 +716,79 @@ section{
 }
 
 
+/* Search Address */
+#search-address{
+    background-color: var(--bg2);
+}
+ul.search__addr-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+li.search__addr-top h3{
+    color: var(--brand);
+}
+
+li.search__addr-top p{
+    color: #7a7c84;
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+li.search__addr-top a p{
+    color: #fff;
+}
+
+li.search__addr-top button{
+    padding: 5px 40px 0px 40px;
+    background-color: transparent;
+    border: 2px solid var(--brand);
+}
+
+li.search__addr-top button:hover{
+    background-color: var(--brand);
+}
+
+li.search__addr-top button:hover li.search__addr-top a{
+    color: var(--body);
+}
+
+li.search__addr-top a{
+    text-decoration: none;
+    color: var(--body);
+}
+
+li.search__addr-top i{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.addr{
+    display:flex;
+}
+
+.addr img{
+    height: 150px;
+    width: 150px;
+}
+
+ul.search-addr{
+    padding-top: 40px;
+    padding-left: 15px;
+}
+
+/* Search Address */
+
+
 /* FOOTER */
 footer{
-    padding-top: 160px;
+    padding-top: 120px;
+    background-color: var(--bg1);
+}
+
+.footer-top h2{
+    height: 50px;
 }
 
 footer .social-links {
@@ -509,3 +807,5 @@ footer .social-links a{
     padding-bottom: 30px;
     border-top: 1px solid var(--bg2);
 }
+
+
