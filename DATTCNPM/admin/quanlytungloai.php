@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION["user"])) {
+    header("location:../account.php");
+}
+?>
+<?php
     include 'config.php';
     if(isset($_POST['sbm']) && !empty($_POST['search'])){
         $search = $_POST['search'];
