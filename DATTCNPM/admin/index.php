@@ -1,9 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("location:../account.php");
+    header("location:../logout.php");
 }
-?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +46,7 @@ if (!isset($_SESSION["user"])) {
                         class="fas fa-paperclip me-2"></i>Báo cáo</a>
                 <a href="quanlydoanhthu.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-shopping-cart me-2"></i>Doanh thu</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                <a href="../logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Đăng xuất</a>
             </div>
         </div>
@@ -77,7 +76,7 @@ if (!isset($_SESSION["user"])) {
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Hồ sơ</a></li>
                                 <li><a class="dropdown-item" href="#">Cài đặt</a></li>
-                                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                                <li><a class="dropdown-item" href="../logout.php">Đăng xuất</a></li>
                             </ul>
                         </li>
                     </ul>
