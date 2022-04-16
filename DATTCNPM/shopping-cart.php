@@ -1,7 +1,9 @@
 <?php
     include "header.php";
 ?>
+
  <?php
+    if (isset($_SESSION['user']) && $_SESSION['user']){
 				$username = "root"; // Khai báo username
 				$password = ""; // Khai báo password
 				$server = "localhost"; // Khai báo server
@@ -15,36 +17,45 @@
 				}
                 $product_name = "";
                 $product_cost = " ";
-                $product_img = " ";
                 $tongtien = 0;
+                $username = "";
+                $id_giohang = 0;
+                // $soluong = "";
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if(isset($_POST["product_name"])) { $product_name = $_POST['product_name']; }
                     if(isset($_POST["product_cost"])) { $product_cost = $_POST['product_cost']; }  
-                    if(isset($_POST["product_img"])) { $product_img =$_POST['$product_img']; }
                     if(isset($_POST["soluong"])) { $soluong =$_POST['soluong']; }
+                    if(isset($_POST["id_giohang"])) { $id_giohang =$_POST['id_giohang']; }
                     $tongtien = ((int)$product_cost * (int)$soluong);
+                    $username = $_SESSION['user'];
 					// $id_user = "";
 					// $sql1 = "SELECT id FROM user";
 	            	// $ket_qua =  $connect->query($sql1);
 					// $row = $ket_qua->fetch_array(MYSQLI_ASSOC);
 					// $id_user = $row['id'];
-					$sql2 = "SELECT * FROM giohang WHERE product_name = '$product_name'";
+                    // $sql3 = "SELECT * FROM giohang WHERE max(id_giohang)";
+                    // $ket_qua = $connect->query($sql3);
+                    // $row = $ket_qua->fetch_array(MYSQLI_ASSOC);
+					$sql2 = "SELECT * FROM giohang WHERE product_name = '$product_name' && username = '$username'";
 					$ketqua1 = $connect->query($sql2);
 					$rows = $ketqua1->fetch_array(MYSQLI_ASSOC);
 					if($rows ==  0){
-						$sql = " INSERT INTO giohang (product_name,soluong,product_cost,tongtien, id_user,product_img)
-						values ('$product_name','$soluong', '$product_cost', '$tongtien',' ', '$product_img')";
+                        // $id_giohang = $row['id_giohang'] + 1;
+                        $id_giohang = $rows['id_giohang'] + 1;
+						$sql = " INSERT INTO giohang (product_name,soluong,product_cost,tongtien, username, id_giohang)
+						values ('$product_name','$soluong', '$product_cost', '$tongtien', '$username', '$id_giohang')";
                         // move_uploaded_file($hinhanh_tmp, 'img/sanpham/'.$product_img);
 						$res = $connect->query($sql);
 						// if($res == TRUE){
 						// 	$_SESSION['order'] = "<div class='success text-center'>Đơn hàng đã được đặt thành công.</div>";
 						// 	header('location:cart_order.php');
 						// }
-					}
+                }
 					else{
+                        $id_giohang = $rows['id_giohang'];
 						$soluong = $soluong + $rows['soluong'];
 						$tongtien = $tongtien + $rows['tongtien'];
-						$sql = "update giohang set product_name = '$product_name' ,soluong = '$soluong', product_cost = '$product_cost', tongtien = '$tongtien' where product_name = '$product_name'";
+						$sql = "update giohang set product_name = '$product_name' ,soluong = '$soluong', product_cost = '$product_cost', tongtien = '$tongtien' , username = '$username' , id_giohang = '$id_giohang' where product_name = '$product_name'";
 						$res = $connect->query($sql);
 						// if($res == TRUE){
 						// 	$_SESSION['order'] = "<div class='success text-center'>Đơn hàng đã được đặt thành công.</div>";
@@ -53,7 +64,8 @@
 					}
 				}
 				$connect->close();
-			?>   
+			
+            }?>   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,21 +99,13 @@
                             <th style="width: 5%;"></th>
                         </tr>
                         <?php
-                            $username = "root"; // Khai báo username
-                           $password = ""; // Khai báo password
-                           $server = "localhost"; // Khai báo server
-                           $dbname = "barbershop"; // Khai báo database
-                           // Kết nối database tintuc
-                           $conn = mysqli_connect($server, $username, $password, $dbname);
-           
-                           //Nếu kết nối bị lỗi thì xuất báo lỗi và thoát.
-                           if (!$conn) {
-                               die("Không kết nối :" . mysqli_connect_error());
-                               exit();
-                           }
-                            $result=mysqli_query($conn, "SELECT COUNT(id) as total FROM giohang");
+                            if (isset($_SESSION['user']) && $_SESSION['user']){
+                            include 'config.php';
+                            
+                            $username = $_SESSION['user'];
+                            $result=mysqli_query($conn, "SELECT * FROM `giohang` where username = $username");
                             $row = mysqli_fetch_assoc($result);
-                            $totalRecords = mysqli_query($conn, "SELECT COUNT(id) as total FROM giohang");
+                            $totalRecords = mysqli_query($conn, "SELECT * FROM `giohang` where username = $username");
                             $totalRecords = $totalRecords->num_rows;
                             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                             $limit = 8;
@@ -117,7 +121,7 @@
                             }
                             
                             $start = ($current_page - 1) * $limit;
-                            $result = mysqli_query($conn, "SELECT * FROM `giohang` LIMIT $start, $limit");
+                            $result = mysqli_query($conn, "SELECT * FROM `giohang` where username = $username LIMIT $start, $limit");
                             // $results = mysqli_query($conn, "SELECT * FROM `product` ");
                             $i=0;
                             $thanhtien = 0;
@@ -127,11 +131,11 @@
                             $i++;	
                             $tamtinh = $tamtinh + $row['tongtien'];	
                             $thanhtien = $tamtinh - ($tamtinh * 0.1);
-
+                            
                         ?>
                         <tr>
                             <td><input type="checkbox" class="shopping__cart-item"></td>
-                            <td><img src="img/sanpham/<?php echo $row['product_img']?>" alt=""></td>
+                            <td><?php echo $row['product_name']?></td>
                             <td>
                                 <ul class="product__cost">
                                     <li class="product__cost-new"><?php echo number_format($row['product_cost'], 0, ",", ".")?></li>
@@ -153,23 +157,34 @@
                                 <a href="delete_cart.php?id=<?php echo $row['id']?>"><i class="ri-delete-bin-5-line"></i></a>
                             </td>
                         </tr>
-                        <?php }?>
+                        <?php }}?>
                     </table>
                 </div>
                 <div class="col-lg-3 thongtindonhang">
                     <h6>THÔNG TIN ĐƠN HÀNG</h6>
                     <hr>
+                    <?php
+                    if (isset($_SESSION['user']) && $_SESSION['user']){
+                            include 'config.php';
+                            $username = $_SESSION['user'];
+                            $result=mysqli_query($conn, "SELECT * FROM `giohang` where username = $username");
+                            $row = mysqli_fetch_assoc($result)     ?>   
+                    <form method="POST" action="" >
                     <ul class="product-cost">
-                        <li class="product-cost"><B>Tạm tính</B> (0 sản phẩm)</li>
-                        <li class="product-cost"><?php echo number_format($tamtinh, 0, ",", ".")?>đ</li>
+                        <li class="product-cost"><B>Tạm tính</B></li>
+                        <li class="product-cost"><p><?php echo number_format($tamtinh, 0, ",", ".")?>đ</p></li>
                     </ul>
                     <hr>
-                    <ul class="product-cost">
+                    <ul class="product-cost" style="display: flex; justify-content: space-between;">
                         <li class="product-cost"><b>Tổng Tiền</b></li>
-                        <li class="product-cost"><?php echo number_format($thanhtien, 0, ",", ".")?>đ</li>
+                        <li class="product-cost"><input name="tongtien" type="text" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;   " value="<?php echo number_format($thanhtien, 0, ",", ".")?>">đ</li>
+                        <input name="id_giohang" type="hidden" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;   " value="<?php echo $row['id_giohang']?>">
+                        <input name="tenkh" type="hidden" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;   " value="<?php echo $row['username']?>">
                     </ul>
                     <hr>
-                    <input type="submit" value="TIẾN HÀNH ĐẶT HÀNG">
+                    <input type="submit" name="dathang" value="TIẾN HÀNH ĐẶT HÀNG">
+                    </form>
+                 <?php }?>
                 </div>
                 <h1 class="text-color">Sản Phẩm Liên Quan</h1>
                 <div class="row gy-5 shopping-cartslide">
@@ -279,3 +294,59 @@ $('.js-filter').on('click', function(){
 <?php
     include "footer.php";
 ?>
+
+
+
+<!-- DDawtj hang -->
+<?php
+if (isset($_SESSION['user']) && $_SESSION['user']){
+    $username = "root"; // Khai báo username
+    $password = ""; // Khai báo password
+    $server = "localhost"; // Khai báo server
+    $dbname = "barbershop"; // Khai báo database
+    // Kết nối database tintuc
+    $connect = new mysqli($server, $username, $password, $dbname);
+    //Nếu kết nối bị lỗi thì xuất báo lỗi và thoát.
+    if ($connect->connect_error) {
+        die("Không kết nối :" . $conn->connect_error);
+        exit();
+    }
+    $tenkh = "";
+    $tongtien = 0;
+    $id_giohang = "";
+    // $soluong = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if(isset($_POST["tenkh"])) { $tenkh = $_POST['tenkh']; }
+        if(isset($_POST["tongtien"])) { $tongtien = $_POST['tongtien']; }  
+        if(isset($_POST["id_giohang"])) { $id_giohang =$_POST['id_giohang']; }
+        $username = $_SESSION['user'];
+        $sql3 = "SELECT * FROM khachhang WHERE username = '$username'";
+        $ketqua2 = $connect->query($sql3);
+        $row = $ketqua2->fetch_array(MYSQLI_ASSOC);
+        $tenkh = $row['hoten'];
+        $sql2 = "SELECT * FROM `giohang` WHERE id_giohang = '$id_giohang' && username = '$username'";
+        $ketqua1 = $connect->query($sql2);
+        $rows = $ketqua1->fetch_array(MYSQLI_ASSOC);
+        if($rows ==  0){
+            $sql = " INSERT INTO `donhang` (tenkh,tongtien,id_giohang)
+            values ('$tenkh','$tongtien', '$id_giohang')";
+            // move_uploaded_file($hinhanh_tmp, 'img/sanpham/'.$product_img);
+            $res = $connect->query($sql);
+            // if($res == TRUE){
+            // 	$_SESSION['order'] = "<div class='success text-center'>Đơn hàng đã được đặt thành công.</div>";
+            // 	header('location:cart_order.php');
+            // }
+        }
+        else{
+            $tongtien = $tongtien + $rows['tongtien'];
+            $sql = "update `donhang` set tenkh = '$tenkh' ,tongtien = '$tongtien', id_giohang = '$id_giohang' id_giohang = '$id_giohang' && username = '$username'";
+            $res = $connect->query($sql);
+            // if($res == TRUE){
+            // 	$_SESSION['order'] = "<div class='success text-center'>Đơn hàng đã được đặt thành công.</div>";
+            // 	header('location:cart_order.php');
+            // }
+        }
+    }
+    $connect->close();
+
+}?>   

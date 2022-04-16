@@ -41,9 +41,6 @@ if (!isset($_SESSION["user"])) {
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php#booking">Đặt Lịch</a>
             </li>
-            <li class="nav-item hidden">
-              <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
-            </li>
             <!-- List Menu -->
             <li class="nav-dropdown">TÌM HIỂU THÊM
               <ul class="nav__item">
@@ -56,15 +53,28 @@ if (!isset($_SESSION["user"])) {
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="khamphakieutoc.php">Khám Phá Kiểu Tóc</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
+                </li>
                 <li class="nav-item hidden">
                   <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
                 </li>
               </ul>
-            </li>
               <!-- List Menu -->
               <li class="nav-item ms-xs">
-                <a class="nav-link" aria-current="page" href="logout.php">Đăng Xuất</a>
+                <a class="nav-link" aria-current="page" href="logout.php"><?php 
+                    if (isset($_SESSION['user']) && $_SESSION['user']){
+                        echo $_SESSION['user'];
+                    }
+                    else{
+                        echo 'Bạn chưa đăng nhập';
+                    }
+                ?></a>
               </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="shopping-cart.php" style=" margin-top: -10px;"><i style="font-size: 25px;" class="ri-shopping-cart-fill"></i></a>
+            </li>
 
               <!-- Menu-dropdown -->
               <div class="menu">
