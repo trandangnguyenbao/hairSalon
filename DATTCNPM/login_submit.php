@@ -8,16 +8,23 @@
         $password =md5($password);
         $sql = "SELECT * FROM khachhang WHERE username='$username' AND password ='$password' AND type = 'user' ";
         $sql2 = "SELECT * FROM khachhang WHERE username='$username' AND password ='$password' AND type = 'admin'";
+        $sql3 = "SELECT * FROM khachhang WHERE username='$username' AND password ='$password' AND type = 'nhanvien'";
 
         // $type = "SELECT type FROM user WHERE username='$username'";
         $user = mysqli_query($conn,$sql);
         $admin = mysqli_query($conn,$sql2);
+        $nhanvien = mysqli_query($conn,$sql3);
         if (mysqli_num_rows($admin) > 0){
             echo "Đăng nhập thành công!";
             header("location: admin/index.php");
             $_SESSION["user"] = $username;
         } 
         elseif (mysqli_num_rows($user) > 0 ){
+            echo "Đăng nhập thành công!";
+            header("location: index.php");
+            $_SESSION["user"] = $username;
+        }
+        elseif (mysqli_num_rows($nhanvien) > 0 ){
             echo "Đăng nhập thành công!";
             header("location: index.php");
             $_SESSION["user"] = $username;

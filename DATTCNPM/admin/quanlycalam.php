@@ -72,7 +72,12 @@ if (!isset($_SESSION["user"])) {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>QNguyen
+                                <i class="fas fa-user me-2"></i><?php if (isset($_SESSION['user']) && $_SESSION['user']){
+                        echo $_SESSION['user'];
+                    }
+                    else{
+                        echo 'Bạn chưa đăng nhập';
+                    }?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Hồ sơ</a></li>
@@ -86,11 +91,20 @@ if (!isset($_SESSION["user"])) {
 
             <div class="container-fluid px-4">
                 <div class="row g-3 my-2">
-                    <div class="col-md-3">
+                <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">720</h3>
-                                <p class="fs-5">Lịch Hẹn </p>
+                            <?php
+                                    include "../config.php";
+                                    $result = mysqli_query($conn, "SELECT * FROM chinhanh");
+                                    $i=0;
+                                    $nhanvien = 0;
+                                    while ($row = mysqli_fetch_assoc($result)){              
+                                    $i++;		
+                                    $nhanvien = $nhanvien + $row['nhanvien'];}
+                                ?>
+                                <p class="fs-5">Nhân Viên</p>
+                                <h3 class="fs-2" style=" color: #000;"><?php echo $nhanvien?></h3>
                             </div>
                             <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -99,8 +113,16 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">4920</h3>
-                                <p class="fs-5">Doanh số</p>
+                            <?php
+                                     include "../config.php";
+                                     $sql = "SELECT * FROM khachhang where type = 'admin'";
+ 
+                                     $res = mysqli_query($conn, $sql);
+ 
+                                     $count = mysqli_num_rows($res);
+                                ?>
+                                <p class="fs-5">ADMIN</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $count?></h3>
                             </div>
                             <i
                                 class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -109,9 +131,18 @@ if (!isset($_SESSION["user"])) {
 
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">3899</h3>
-                                <p class="fs-5">Vận chuyển</p>
+                        <div>
+                            <?php
+                                    include "../config.php";
+                                    $result = mysqli_query($conn, "SELECT * FROM chinhanh");
+                                    $i=0;
+                                    $doanhthu = 0;
+                                    while ($row = mysqli_fetch_assoc($result)){              
+                                    $i++;		
+                                    $doanhthu = $doanhthu + $row['doanhthu'];}
+                                ?>
+                                <p class="fs-5">Doanh Thu</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $doanhthu?></h3>
                             </div>
                             <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -120,8 +151,8 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">%25</h3>
                                 <p class="fs-5">Tăng trưởng</p>
+                                <h3 class="fs-2" style="color: #000;">25%</h3>
                             </div>
                             <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -130,9 +161,9 @@ if (!isset($_SESSION["user"])) {
 
                 <div    class="row my-5">
                     <ul class="quanly">
-                    <li><a href="themkhachhang.php" class="btn__add" style="padding: 15px 50px; background-color: #f18a1c; border-radius: 4px; text-align: center;padding-top: 8px; color: #fff; font-size: 18px; font-weight: 600;">
-                            Thêm mới
-                        </a></li>
+                    <li>
+                        <p style="font-size: 25px; font-weight: bold;">CHI TIẾT CA LÀM</p>
+                    </li>
                         <li><form method="POST" class="d-flex" action="">
                             <input name="search" type="search" class="form-control" style="border-color: #000;height: 40px; width: 300px; position: relative;">
                             <button name="sbm" class="btn btn-success" style=" border-color: #f18a1c; border: unset; margin-top: 0px; padding: 8px 10px;">Tìm kiếm</button>
@@ -144,7 +175,7 @@ if (!isset($_SESSION["user"])) {
                             <thead>
                                 <tr>
                                     <th scope="col" width="50">#</th>
-                                    <th scope="col">Mã Nhân Viên</th>
+                                    <th scope="col">Tên Nhân Viên</th>
                                     <th scope="col">Chi Nhánh</th>
                                     <th scope="col">Chức Vụ</th>
                                     <th scope="col">Ca Làm</th>
@@ -155,9 +186,9 @@ if (!isset($_SESSION["user"])) {
                             <tbody>
                             <?php
                                 include '../config.php';
-                                $result=mysqli_query($conn, "SELECT * FROM `calam`");
+                                $result=mysqli_query($conn, "SELECT * FROM calam");
                                 $row = mysqli_fetch_assoc($result);
-                                $totalRecords = mysqli_query($conn, "SELECT * FROM `calam`");
+                                $totalRecords = mysqli_query($conn, "SELECT * FROM calam");
                                 $totalRecords = $totalRecords->num_rows;
                                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                                 $limit = 6;
@@ -171,21 +202,22 @@ if (!isset($_SESSION["user"])) {
                                 else if ($current_page < 1){
                                     $current_page = 1;
                                 }
+                                
                                 $i = 1;
                                 $start = ($current_page - 1) * $limit;
-                                $result = mysqli_query($conn, "SELECT * FROM `calam` LIMIT $start, $limit");
+                                $result = mysqli_query($conn, "SELECT * FROM calam LIMIT $start, $limit");
                                 while ($row = mysqli_fetch_array($result)){
                             ?>
                                 <tr>
                                     <th scope="row"><?php echo $i++ ?></th>
-                                    <td><?php echo $row['manv']?></td>
+                                    <td><?php echo $row['tennv']?></td>
                                     <td><?php echo $row['chinhanh']?></td>
-                                    <td></td>
+                                    <td><?php echo $row['chucvu']?></td>
                                     <td><?php echo $row['calam']?></td>
                                     <td><?php echo $row['ngaylam']?></td>
                                     <td>
-                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="suanhanvien.php?id=<?php echo $row['id']?>">Sửa</a>
-                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoanhanvien.php?id=<?php echo $row['id']?>">Xóa</a>
+                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="suacalam.php?id=<?php echo $row['id']?>">Sửa</a>
+                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoacalam.php?id=<?php echo $row['id']?>">Xóa</a>
                                     </td>  
                                 </tr>
                             <?php }?>

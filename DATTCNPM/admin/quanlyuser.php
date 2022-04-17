@@ -72,7 +72,12 @@ if (!isset($_SESSION["user"])) {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>QNguyen
+                                <i class="fas fa-user me-2"></i><?php if (isset($_SESSION['user']) && $_SESSION['user']){
+                        echo $_SESSION['user'];
+                    }
+                    else{
+                        echo 'Bạn chưa đăng nhập';
+                    }?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Hồ sơ</a></li>
@@ -86,11 +91,19 @@ if (!isset($_SESSION["user"])) {
 
             <div class="container-fluid px-4">
                 <div class="row g-3 my-2">
-                    <div class="col-md-3">
+                <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">720</h3>
-                                <p class="fs-5">Lịch Hẹn </p>
+                                <?php
+                                    include "../config.php";
+                                    $sql = "SELECT * FROM khachhang where type = 'user'";
+
+                                    $res = mysqli_query($conn, $sql);
+
+                                    $count = mysqli_num_rows($res);
+                                ?>
+                                <p class="fs-5">Khách Hàng</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $count?></h3>
                             </div>
                             <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -99,8 +112,16 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">4920</h3>
-                                <p class="fs-5">Doanh số</p>
+                            <?php
+                                    include "../config.php";
+                                    $sql = "SELECT * FROM product_type";
+
+                                    $res = mysqli_query($conn, $sql);
+
+                                    $count = mysqli_num_rows($res);
+                                ?>
+                                <p class="fs-5"><a href="quanlyloaisanpham.php" style="color: #EA8025;">Loại Sản Phẩm</a></p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $count?></h3>
                             </div>
                             <i
                                 class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -110,8 +131,16 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">3899</h3>
-                                <p class="fs-5">Vận chuyển</p>
+                            <?php
+                                    include "../config.php";
+                                    $sql = "SELECT * FROM donhang";
+
+                                    $res = mysqli_query($conn, $sql);
+
+                                    $count = mysqli_num_rows($res);
+                                ?>
+                                <p class="fs-5">Đơn Hàng</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $count?></h3>
                             </div>
                             <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -120,8 +149,17 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">%25</h3>
-                                <p class="fs-5">Tăng trưởng</p>
+                            <?php
+                                    include "../config.php";
+                                    $result = mysqli_query($conn, "SELECT * FROM donhang");
+                                    $i=0;
+                                    $Doanhthu = 0;
+                                    while ($row = mysqli_fetch_assoc($result)){              
+                                    $i++;		
+                                    $Doanhthu = $Doanhthu + $row['tongtien'];}
+                                ?>
+                                <p class="fs-5">Doanh Thu</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $Doanhthu?></h3>
                             </div>
                             <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -146,16 +184,16 @@ if (!isset($_SESSION["user"])) {
                                     <th scope="col" width="50">#</th>
                                     <th scope="col">Số Điện Thoại</th>
                                     <th scope="col">Tên Khách Hàng</th>
-                                    <th scope="col">Địa Chỉ</th>
+                                    <th scope="col">Mật Khẩu</th>
                                     <th scope="col">Chức Năng</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
                                 include '../config.php';
-                                $result=mysqli_query($conn, "SELECT * FROM `khachhang`");
+                                $result=mysqli_query($conn, "SELECT * FROM `khachhang` where type = 'user'");
                                 $row = mysqli_fetch_assoc($result);
-                                $totalRecords = mysqli_query($conn, "SELECT * FROM `khachhang`");
+                                $totalRecords = mysqli_query($conn, "SELECT * FROM `khachhang` where type = 'user'");
                                 $totalRecords = $totalRecords->num_rows;
                                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                                 $limit = 6;
@@ -171,17 +209,17 @@ if (!isset($_SESSION["user"])) {
                                 }
                                 $i = 1;
                                 $start = ($current_page - 1) * $limit;
-                                $result = mysqli_query($conn, "SELECT * FROM `khachhang` LIMIT $start, $limit");
+                                $result = mysqli_query($conn, "SELECT * FROM `khachhang` where type = 'user' LIMIT $start, $limit");
                                 while ($row = mysqli_fetch_array($result)){
                             ?>
                                 <tr>
                                     <th scope="row"><?php echo $i++ ?></th>
-                                    <td><?php echo $row['phone']?></td>
-                                    <td><?php echo $row['tenkh']?></td>
-                                    <td><?php echo $row['diachi']?></td>
+                                    <td><?php echo $row['username']?></td>
+                                    <td><?php echo $row['hoten']?></td>
+                                    <td><?php echo md5($row['password'])?></td>
                                     <td>
-                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="suakhachhang.php?id_user=<?php echo $row['id_user']?>">Sửa</a>
-                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoakhachhang.php?id_user=<?php echo $row['id_user']?>">Xóa</a>
+                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="suakhachhang.php?id=<?php echo $row['id']?>">Sửa</a>
+                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoakhachhang.php?id=<?php echo $row['id']?>">Xóa</a>
                                     </td>  
                                 </tr>
                             <?php }?>

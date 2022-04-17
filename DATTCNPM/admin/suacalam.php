@@ -1,17 +1,17 @@
 <?php
     include 'config.php';
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `khachhang` WHERE id = $id";
+    $sql = "SELECT * FROM `calam` WHERE id = $id";
     $query = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($query);
 
     if(isset($_POST['sua'])){
-        $diachi = $_POST['diachi'];
-        $phone = $_POST['phone'];
-        $sql = "UPDATE `khachhang` SET diachi = '$diachi', phone = '$phone' WHERE id = $id";
+        $calam = $_POST['calam'];
+        $ngaylam = $_POST['ngaylam'];
+        $sql = "UPDATE `calam` SET calam = '$calam', ngaylam = '$ngaylam' WHERE id = $id";
 
         $query = mysqli_query($conn, $sql);
-        header('location: quanlyuser.php');
+        header('location: quanlycalam.php');
     }
 ?>
 <head>
@@ -44,18 +44,22 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h2>Cập Nhật Lịch Hẹn</h2>
+            <h2>Cập Nhật Ca Làm</h2>
         </div>
 
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>Số điện thoại</label>
-                    <input type="number" name="username" class="form-control" value="<?php echo $row['username']; ?>">
+                    <label>Ca Làm</label><br>
+                    <select name="calam" id="" style="height: 40px;">
+                        <option value="Ca 1">Ca 1</option>
+                        <option value="Ca 2">Ca 2</option>
+                        <option value="Ca 3">Ca 3</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="text" name="password" class="form-control" value="<?php echo $row['password']; ?>">
+                    <label>Doanh Thu</label>
+                    <input type="date" name="ngaylam" class="form-control">
                 </div>
                     <input type="submit" name="sua" class="btn btn-success"></input>
             </form>

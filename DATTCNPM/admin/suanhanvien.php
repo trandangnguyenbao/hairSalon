@@ -1,27 +1,17 @@
 <?php
     include 'config.php';
-    // $sql_brand = "SELECT * FROM brands";
-    // $query_brand = mysqli_query($connect, $sql_brand);
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM `khachhang` WHERE id = $id";
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($query);
 
-    if(isset($_POST['sbm'])){
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        $hoten = $_POST['hoten'];
+    if(isset($_POST['sua'])){
+        $password = $_POST['password'];
+        $chinhanh = $_POST['chinhanh'];
         $type = $_POST['type'];
-        $chucvu = $_POST['chucvu'];
-        $chinhanh = $_POST['chinhanh'];
-        $sql = "INSERT INTO `khachhang` (username, password,hoten , chucvu,chinhanh, type) VALUES('$username', '$password', '$hoten', '$chucvu', '$chinhanh' , '$type')";
+        $sql = "UPDATE `khachhang` SET password = '$password', chinhanh = '$chinhanh', type = '$type' WHERE id = $id";
+
         $query = mysqli_query($conn, $sql);
-        // move_uploaded_file($image_tmp, '../img/kieutoc/'.$img);
-        header('location: quanlynhanvien.php');
-    }
-    if(isset($_POST['sbm'])){
-        $username = $_POST['username'];
-        $chinhanh = $_POST['chinhanh'];
-        $chucvu = $_POST['chucvu'];
-        $sql = "INSERT INTO `calam` (tennv, chinhanh,chucvu) VALUES('$username', '$chinhanh', '$chucvu')";
-        $query = mysqli_query($conn, $sql);
-        // move_uploaded_file($image_tmp, '../img/kieutoc/'.$img);
         header('location: quanlynhanvien.php');
     }
 ?>
@@ -53,45 +43,28 @@
     
 </head>
 <div class="container-fluid">
-    <div class="card">  
+    <div class="card">
         <div class="card-header">
-            <h2>Thêm Nhân Viên</h2>
+            <h2>Cập Nhật Nhân Viên</h2>
         </div>
 
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>Tài Khoản</label>
-                    <input type="text" name="username" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label>Họ Tên</label> <br>
-                    <input type="text" name="hoten">
-                </div>
-
-                <div class="form-group">
-                    <label>Mật Khẩu</label>
-                    <input type="password" name="password" class="form-control">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" value="<?php echo $row['password']; ?>">
                 </div>
                 <div class="form-group">
                     <label>Phân Quyền</label><br>
-                    <select name="type" id="" style="height: 38px;">
+                    <select name="type" id="" style="height: 40px;">
                         <option value="admin">admin</option>
                         <option value="nhanvien">nhanvien</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Chức Vụ</label><br>
-                    <select name="chucvu" id="" style="height: 38px;">
-                        <option value="Nhân Viên Tư Vấn">Nhân Viên Tư Vấn</option>
-                        <option value="Barber">Barber</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="">Chi Nhánh</label><br>
-                <select name="chinhanh" style="height: 40px;">
-                <?php
+                <label for="">Chi Nhánh</label><br>
+                <select class="" name="chinhanh" style="height: 40px;">
+                  <?php
                             $username = "root"; // Khai báo username
                               $password = ""; // Khai báo password
                               $server = "localhost"; // Khai báo server
@@ -114,8 +87,7 @@
                         <?php } ?>
                   </select>
                 </div>
-                <!-- <input type="hidden" name="type" value="admin" class="form-control"> -->
-                <button name="sbm" class="btn btn-success">Thêm mới</button>
+                    <input type="submit" name="sua" class="btn btn-success"></input>
             </form>
         </div>
     </div>

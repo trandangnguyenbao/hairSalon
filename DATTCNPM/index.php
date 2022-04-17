@@ -21,7 +21,7 @@ $chinhanh = " ";
 $dichvu = " ";
 $note = " ";
 $tongtien = 0;
-
+$doanhthu = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if(isset($_POST["name"])) { $name = $_POST['name']; }
 	if(isset($_POST["phone"])) { $phone = $_POST['phone']; }
@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if(isset($_POST["note"])) { $note =$_POST['note']; }
 	if(isset($_POST["dichvu"])) { $dichvu =$_POST['dichvu']; }
 	if(isset($_POST["tongtien"])) { $tongtien =$_POST['tongtien']; }
-
   $sql1 = "SELECT * FROM dichvu where tendichvu = '{$dichvu}'";
 	$query =  $connect->query($sql1);
 	$row = $query->fetch_array();
@@ -39,7 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Code xử lý, insert dữ liệu vào table
 $sql = "INSERT INTO lichhen(name, phone, ngay, thoigian, note, chinhanh,dichvu,tongtien)
 VALUES ('$name', '$phone', '$ngay','$thoigian','$note', '$chinhanh', '$dichvu', '$tongtien')";
-    if ($connect->query($sql) === TRUE) {
+$sql2 = "SELECT * FROM chinhanh where diachi = '{$chinhanh}'";
+$query1 =  $connect->query($sql2);
+$rows = $query1->fetch_array(MYSQLI_ASSOC);
+if($rows == 1){
+	$doanhthu = $rows['doanhthu'] + $tongtien;
+  $sql3 = "INSERT INTO chinhanh (doanhthu) VALUES ('$doanhthu')"; 
+}
+  if ($connect->query($sql) === TRUE) {
         // header('Location:'.'http://localhost/DATTCNPM/index.php');
  } else {
         echo "Error: " . $sql . "<br>" . $connect->error;

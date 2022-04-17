@@ -88,7 +88,12 @@ if (!isset($_SESSION["user"])) {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>QNguyen
+                                <i class="fas fa-user me-2"></i><?php if (isset($_SESSION['user']) && $_SESSION['user']){
+                        echo $_SESSION['user'];
+                    }
+                    else{
+                        echo 'Bạn chưa đăng nhập';
+                    }?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Hồ sơ</a></li>
@@ -105,8 +110,16 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">720</h3>
+                                <?php
+                                     include "../config.php";
+                                     $sql = "SELECT * FROM chinhanh";
+ 
+                                     $res = mysqli_query($conn, $sql);
+ 
+                                     $count = mysqli_num_rows($res);
+                                ?>
                                 <p class="fs-5">Chi Nhánh</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $count?></h3>
                             </div>
                             <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -115,8 +128,17 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">4920</h3>
+                            <?php
+                                    include "../config.php";
+                                    $result = mysqli_query($conn, "SELECT * FROM chinhanh");
+                                    $i=0;
+                                    $nhanvien = 0;
+                                    while ($row = mysqli_fetch_assoc($result)){              
+                                    $i++;		
+                                    $nhanvien = $nhanvien + $row['nhanvien'];}
+                                ?>
                                 <p class="fs-5">Nhân Viên</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $nhanvien?></h3>
                             </div>
                             <i
                                 class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -126,8 +148,17 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">3899</h3>
+                            <?php
+                                    include "../config.php";
+                                    $result = mysqli_query($conn, "SELECT * FROM chinhanh");
+                                    $i=0;
+                                    $doanhthu = 0;
+                                    while ($row = mysqli_fetch_assoc($result)){              
+                                    $i++;		
+                                    $doanhthu = $doanhthu + $row['doanhthu'];}
+                                ?>
                                 <p class="fs-5">Doanh Thu</p>
+                                <h3 class="fs-2" style="color: #000;"><?php echo $doanhthu?></h3>
                             </div>
                             <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -136,8 +167,8 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">%25</h3>
                                 <p class="fs-5">Tăng trưởng</p>
+                                <h3 class="fs-2" style=" color: #000;">25%</h3>
                             </div>
                             <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -184,13 +215,17 @@ if (!isset($_SESSION["user"])) {
                                         <tbody>
                                             <?php
                                             $i = 1;
+                                            $doanhthu = 0;
                                                 while ($row = mysqli_fetch_array($res)){
+                                                $i=0;
+                                                $doanhthu =$doanhthu + $row['doanhthu'];
                                             ?>
                                                 <tr>
                                                     <th scope="row"><?php echo $i++ ?></th>
                                                     <td><?php echo $row['diachi']?></td>
                                                     <td><?php echo $row['hinhanh']?></td>
                                                     <td><?php echo $row['nhanvien']?></td>
+                                                    
                                                     <td><?= number_format($row['doanhthu'], 0, ",", ".") ?></td>
                                                     <td>
                                                         <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="suachinhanh.php?id=<?php echo $row['id']?>">Sửa</a>
