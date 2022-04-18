@@ -49,27 +49,27 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-lg-2 col-md-2 center surrance-item">
+                <div class="col-lg-2 col-md-4 col-sm-4 surrance-item">
                     <img src="img/anhmau/hot.png" alt="">
                     <p>Sản phẩm mới</p>
                 </div>
-                <div class="col-lg-2 col-md-2 surrance-item">
+                <div class="col-lg-2 col-md-4 col-sm-4 surrance-item">
                     <img src="img/anhmau/sale-shock.png" alt="">
                     <p>Sale sốc deal hời</p>
                 </div>
-                <div class="col-lg-2 col-md-2 surrance-item">
+                <div class="col-lg-2 col-md-4 col-sm-4 surrance-item">
                     <img src="img/anhmau/doc-quyen.png" alt="">
                     <p>Sản phẩm độc quyền</p>
                 </div>
-                <div class="col-lg-2 col-md-2 surrance-item">
+                <div class="col-lg-2 col-md-4 col-sm-4 surrance-item">
                     <img src="img/anhmau/het-mun.png" alt="">
                     <p>Nhanh hết mụn</p>
                 </div>
-                <div class="col-lg-2 col-md-2 surrance-item">
+                <div class="col-lg-2 col-md-4 col-sm-4 surrance-item">
                     <img src="img/anhmau/skincare.png" alt="">
                     <p>Chăm sóc da mặt</p>
                 </div>
-                <div class="col-lg-2 col-md-2 surrance-item">
+                <div class="col-lg-2 col-md-4 col-sm-4 surrance-item">
                     <img src="img/anhmau/toc-dep.png" alt="">
                     <p>Muốn có tóc đẹp</p>
                 </div>
@@ -82,10 +82,11 @@
         <div class="container">
             <div class="title-top">
                 <div class="title">
-                    <h1 class="text-color">Sản Phẩm Mới Nhất</h1>
+                    <h1 class="text-color d-md-none d-sm-none d-lg-block d-none">Sản Phẩm Mới Nhất</h1>
+                    <h3 class="text-color d-lg-none">Sản Phẩm Mới Nhất</h3>
                     <div class="title-line"></div>
                 </div>
-                <div class="search-product">
+                <div class="search-product d-none d-lg-block d-md-block d-sm-block">
                     <select name="search" id="">
                         <option value="Sắp Xếp Theo Giá">Sắp Xếp Theo Giá</option>
                         <option value="Sắp Xếp Theo Tên">Sắp Xếp Theo Tên</option>
@@ -171,10 +172,11 @@
         <div class="container">
             <div class="title-top">
                 <div class="title">
-                    <h1 class="text-color">Sản Phẩm Bán Chạy</h1>
+                    <h1 class="text-color d-md-none d-sm-none d-lg-block d-none">Sản Phẩm Bán Chạy</h1>
+                    <h3 class="text-color d-lg-none">Sản Phẩm Bán Chạy</h3>
                     <div class="title-line"></div>
                 </div>
-                <div class="search-product">
+                <div class="search-product d-none d-lg-block d-md-block d-sm-block">
                     <select name="search" id="">
                         <option value="Sắp Xếp Theo Giá">Sắp Xếp Theo Giá</option>
                         <option value="Sắp Xếp Theo Tên">Sắp Xếp Theo Tên</option>
@@ -186,7 +188,7 @@
             <div class="row gy-5">
             <?php
                 include 'config.php';
-                $result=mysqli_query($conn, "SELECT * FROM `sanpham` where product_type = 2");
+                $result=mysqli_query($conn, "SELECT * FROM `sanpham` where product_type = 3");
                 $row = mysqli_fetch_assoc($result);
                 $totalRecords = mysqli_query($conn, "SELECT * FROM `sanpham` where product_type = 2");
                 $totalRecords = $totalRecords->num_rows;
@@ -251,10 +253,11 @@
         <div class="container">
             <div class="title-top">
                 <div class="title">
-                    <h1 class="text-color">ComBo Siêu Tiết Kiệm</h1>
+                    <h1 class="text-color d-md-none d-sm-none d-lg-block d-none">ComBo Siêu Tiết Kiệm</h1>
+                    <h3 class="text-color d-lg-none">ComBo Siêu Tiết Kiệm</h3>
                     <div class="title-line"></div>
                 </div>
-                <div class="search-product">
+                <div class="search-product d-none d-lg-block d-md-block d-sm-block">
                     <select name="search" id="">
                         <option value="Sắp Xếp Theo Giá">Sắp Xếp Theo Giá</option>
                         <option value="Sắp Xếp Theo Tên">Sắp Xếp Theo Tên</option>
@@ -331,10 +334,11 @@
     <div class="container">
             <div class="title-top">
                 <div class="title">
-                    <h1 class="text-color">Chăm Sóc Cá Nhân</h1>
+                    <h1 class="text-color d-md-none d-sm-none d-lg-block d-none">Chăm Sóc Cá Nhân</h1>
+                    <h3 class="text-color d-lg-none">Chăm Sóc Cá Nhân</h3>
                     <div class="title-line"></div>
                 </div>
-                <div class="search-product">
+                <div class="search-product d-none d-lg-block d-md-block d-sm-block">
                     <select name="search" id="">
                         <option value="Sắp Xếp Theo Giá">Sắp Xếp Theo Giá</option>
                         <option value="Sắp Xếp Theo Tên">Sắp Xếp Theo Tên</option>
@@ -410,7 +414,8 @@
     <!-- THƯƠNG HIỆU -->
     <section class="thuonghieu">
         <div class="container">
-            <h2 class="text-color">THƯƠNG HIỆU NỔI BẬT</h2>
+            <h1 class="text-color d-md-none d-sm-none d-lg-block d-none">THƯƠNG HIỆU NỔI BẬT</h1>
+            <h3 class="text-color d-lg-none">THƯƠNG HIỆU NỔI BẬT</h3>
             <br>
             <div class="row">
                 <div class="thuonghieu-item">
@@ -444,38 +449,39 @@
     <!-- CAM KẾT -->
     <section id="camket">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 camket">
+            <div class="row gy-5">
+                <h2 class="text-color d-md-none d-lg-none">Cam Kết</h2>
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-1.png" alt="">
-                    <p>Cam kết 7 ngày hiệu quả</p>
+                    <p class="d-sm-none d-md-block d-lg-block d-lg-block">Cam kết 7 ngày hiệu quả</p>
                 </div>
-                <div class="col-lg-3 col-md-3 camket">
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-2.png" alt="">
-                    <p>Mua 1 hưởng 5 đặc quyền</p>
+                    <p class="d-sm-none d-md-block d-lg-block">Mua 1 hưởng 5 đặc quyền</p>
                 </div>
-                <div class="col-lg-3 col-md-3 camket">
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-3.png" alt="">
-                    <p>Chính sách hoàn tiền 120%</p>
+                    <p class="d-sm-none d-md-block d-lg-block">Chính sách hoàn tiền 120%</p>
                 </div>
-                <div class="col-lg-3 col-md-3 camket">
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-4.png" alt="">
-                    <p>Sản phẩm chất lượng cao</p>
+                    <p class="d-sm-none d-md-block d-lg-block">Sản phẩm chất lượng cao</p>
                 </div>
-                <div class="col-lg-3 col-md-3 camket">
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-5.png" alt="">
-                    <p>Giao hàng siêu tốc 2h</p>
+                    <p class="d-sm-none d-md-block d-lg-block">Giao hàng siêu tốc 2h</p>
                 </div>
-                <div class="col-lg-3 col-md-3 camket">
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-6.png" alt="">
-                    <p>Đổi trả tận nơi trong 24h</p>
+                    <p class="d-sm-none d-md-block d-lg-block">Đổi trả tận nơi trong 24h</p>
                 </div>
-                <div class="col-lg-3 col-md-3 camket">
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-7.png" alt="">
-                    <p>Tổng đài tư vấn mọi lúc mọi nơi</p>
+                    <p class="d-sm-none d-md-block d-lg-block">Tổng đài tư vấn mọi lúc mọi nơi</p>
                 </div>
-                <div class="col-lg-3 col-md-3 camket">
+                <div class="col-lg-3 col-md-4 col-sm-3 camket">
                     <img src="img/anhmau/usp-icon-8.png" alt="">
-                    <p>An toàn chuẩn giao vận quốc tế</p>
+                    <p class="d-sm-none d-md-block d-lg-block">An toàn chuẩn giao vận quốc tế</p>
                 </div>
             </div>
         </div>

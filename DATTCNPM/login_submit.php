@@ -26,7 +26,7 @@
         }
         elseif (mysqli_num_rows($nhanvien) > 0 ){
             echo "Đăng nhập thành công!";
-            header("location: index.php");
+            header("location: admin/nhanvien.php");
             $_SESSION["user"] = $username;
         }
         else{

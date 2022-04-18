@@ -8,7 +8,8 @@
     if(isset($_POST['sua'])){
         $calam = $_POST['calam'];
         $ngaylam = $_POST['ngaylam'];
-        $sql = "UPDATE `calam` SET calam = '$calam', ngaylam = '$ngaylam' WHERE id = $id";
+        $tinhtrang = $_POST['tinhtrang'];
+        $sql = "UPDATE `calam` SET calam = '$calam', ngaylam = '$ngaylam', tinhtrang = '$tinhtrang' WHERE id = $id";
 
         $query = mysqli_query($conn, $sql);
         header('location: quanlycalam.php');
@@ -58,8 +59,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Doanh Thu</label>
-                    <input type="date" name="ngaylam" class="form-control">
+                    <label>Ngày Làm</label>
+                    <input type="date" name="ngaylam" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label>Chấm Công</label><br>
+                    <select name="tinhtrang" id="" style="height: 40px;">
+                        <option value="Hoàn Thành">Hoàn Thành</option>
+                        <option value="Nghỉ Làm">Nghỉ Làm</option>
+                        <option value="Đi Trễ">Đi Trễ</option>
+                    </select>
                 </div>
                     <input type="submit" name="sua" class="btn btn-success"></input>
             </form>

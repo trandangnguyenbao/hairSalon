@@ -141,53 +141,134 @@ if (!isset($_SESSION["user"])) {
                 </div>
 
                 <div    class="row my-5">
-                    <h3 class="fs-4 mb-3">Đơn hàng gần đây</h3>
-                    <div class="col">
+                <div    class="row my-5">
+                    <ul class="quanly">
+                    <li><p style="color: #000; font-size: 25px; font-weight: bold;">Đơn Hàng Gần Đây</p></li>
+                        <?php
+                if(isset($total_prd)){
+                    if($total_prd !==0){
+                        echo "<p class='text-success'>Tìm thấy $total_prd đơn hàng</p>";
+                    }else{
+                        echo "<p class='text-danger'> Không tìm thấy đơn hàng nào! </p>";
+                    }
+                }
+            ?>
+                    <li><form method="POST" class="d-flex" action="">
+                            <input name="search" type="search" class="form-control" style="border-color: #000;height: 40px; width: 300px; position: relative;">
+                            <button name="sbm" class="btn btn-success" style=" border-color: #f18a1c; border: unset; margin-top: 0px; padding: 8px 10px; border-radius: 4px;">Tìm kiếm</button>
+                        </form>
+                    </li>
+                    </ul>
+                    <?php
+                            if(isset($_POST['sbm']) && !empty($_POST['search']) && ($total_prd !== 0)){?>
+                                
+                                <form method="POST" action="">
+                                    <button name="all_prd" class='btn btn-success text-light'>Tất cả sản phẩm</button>
+                                </form>
+                                <table class="table bg-white rounded shadow-sm  table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="50">#</th>
+                                    <!-- <th scope="col">Mã Giỏ Hàng</th> -->
+                                    <th scope="col">Tên Khách Hàng</th>
+                                    <th scope="col">Tổng Tiền</th>
+                                    <!-- <th scope="col" style="width:25%;">Chi Nhánh</th> -->
+                                    <th scope="col">Tình Trạng</th>
+                                    <th scope="col">Chức Năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $i = 1;
+                            while ($row = mysqli_fetch_array($res)){
+                                ?>
+                                <tr>
+                                    <th scope="row"><?php echo $i++ ?></th>
+                                    <td><?php echo $row['tenkh']?></td>
+                                    <td><?= number_format($row['tongtien'], 0, ",", ".") ?></td>
+                                    <td><?php echo $row['tinhtrang']?></td>
+                                    <td>
+                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="suadonhang.php?id=<?php echo $row['id']?>">Sửa</a>
+                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoadonhang.php?id=<?php echo $row['id']?>">Xóa</a>
+                                    </td>  
+                                </tr>
+                            <?php }?>
+                            </tbody>
+                                </table>
+                        <?php } ?>
+                        <?php  if(empty($_POST['search'])){?>
+                            <div class="col">
                         <table class="table bg-white rounded shadow-sm  table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col" width="50">#</th>
-                                    <th scope="col">Sản phẩm</th>
-                                    <th scope="col">Khách hàng</th>
-                                    <th scope="col">Giá</th>
+                                    <!-- <th scope="col">Mã Giỏ Hàng</th> -->
+                                    <th scope="col">Tên Khách Hàng</th>
+                                    <th scope="col">Tổng Tiền</th>
+                                    <!-- <th scope="col" style="width:25%;">Chi Nhánh</th> -->
+                                    <th scope="col">Tình Trạng</th>
+                                    <th scope="col">Chức Năng</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php
+                                include '../config.php';
+                                $result=mysqli_query($conn, "SELECT * FROM `donhang`");
+                                $row = mysqli_fetch_assoc($result);
+                                $totalRecords = mysqli_query($conn, "SELECT * FROM `donhang`");
+                                $totalRecords = $totalRecords->num_rows;
+                                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                $limit = 6;
+
+
+                                $total_page = ceil($totalRecords / $limit);
+
+                                if ($current_page > $total_page){
+                                    $current_page = $total_page;
+                                }
+                                else if ($current_page < 1){
+                                    $current_page = 1;
+                                }
+                                $i = 1;
+                                $start = ($current_page - 1) * $limit;
+                                $result = mysqli_query($conn, "SELECT * FROM donhang LIMIT $start, $limit");
+                                while ($row = mysqli_fetch_array($result)){
+                            ?>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Wax</td>
-                                    <td>Diễm My</td>
-                                    <td>$1200</td>
+                                    <th scope="row"><?php echo $i++ ?></th>
+                                    <td><?php echo $row['tenkh']?></td>
+                                    <td><?= number_format($row['tongtien'], 0, ",", ".") ?></td>
+                                    <td><?php echo $row['tinhtrang']?></td>
+                                    <td>
+                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="suadonhang.php?id=<?php echo $row['id']?>">Sửa</a>
+                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoadonhang.php?id=<?php echo $row['id']?>">Xóa</a>
+                                    </td>  
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Toner</td>
-                                    <td>Tiếp Bịp</td>
-                                    <td>$750</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Máy sấy</td>
-                                    <td>Jonny Dang</td>
-                                    <td>$600</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Sữa rửa mặt</td>
-                                    <td>Khoa Pug</td>
-                                    <td>$300</td>
-                                </tr>
-                               
+                            <?php }?>
                             </tbody>
-                        </table>
+                                </table>
+                <ul class="pagination">
+                <?php for ($i = 1; $i <= $total_page; $i++){
+
+                    if ($i == $current_page){
+                        echo '<li class="pag-item"><span >'.$i.'</span></li>';
+                    }
+                    else{
+                        echo '<li class="pag-item"><a href = "quanlylichhen.php?page='.$i.'">'.$i.'</a></li>';
+                    }
+                    }?>
+                    </ul>
                     </div>
+                <?php } ?>
                 </div>
 
             </div>
         </div>
     </div>
+    </div>
     <!-- /#page-content-End -->
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>

@@ -22,7 +22,7 @@
 <body id="home" data-bs-spy="scroll" data-bs-target=".navbar">
     <section id="product-detail">
         <div class="container">
-            <div class="row">
+            <div class="row gy-4">
             <?php
                         $username = "root"; // Khai báo username
 						$password = ""; // Khai báo password
@@ -195,14 +195,14 @@
                         <a href="#" class="social__links"><i class="ri-heart-fill"></i></a>
                         <a href="#" class="social__links"><i class="ri-shopping-bag-line"></i></a>
                     </div> 
-                    <p class="descript"><a href="product_details.php?id=<?= $row['id']?>"><?= $row['product_name'] ?></a></p>
-                    <ul class="price">
+                    <p class="descript d-sm-none d-none d-lg-block"><a href="product_details.php?id=<?= $row['id']?>"><?= $row['product_name'] ?></a></p>
+                    <ul class="price d-sm-none d-none d-lg-block">
                         <li class="price-now">
                             <p><?= number_format($row['product_cost'], 0, ",", ".") ?></p>
                         </li>
                         <li class="price-old"><del><?= number_format($row['product_oldcost'], 0, ",", ".") ?></del></li>
                     </ul>
-                    <ul class="rating">
+                    <ul class="rating d-none d-sm-none d-md-flex d-lg-flex">
                         <li class="rating"><i class="ri-star-fill"></i></li>
                         <li class="rating"><i class="ri-star-fill"></i></li>
                         <li class="rating"><i class="ri-star-fill"></i></li>

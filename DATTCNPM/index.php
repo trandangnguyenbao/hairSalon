@@ -86,7 +86,7 @@ if($rows == 1){
 
     <!-- TRENDING -->
       <section id="trending">
-          <div class="container">
+          <div class="container gy-3">
             <div class="row">
               <div class="col-lg-4">
                 <h4>XU HƯỚNG TÓC <i>2022</i> DÀNH CHO NAM GIỚI</h4>
@@ -97,10 +97,10 @@ if($rows == 1){
                 </p>
               </div>
               <div class="col-lg-2">
-                <a href="khamphakieutoc.php"><button>NỔI BẬT 2021</button></a>
+                <a href="khamphakieutoc.php"><button class="d-sm-none d-lg-block d-md-none d-none">NỔI BẬT 2021</button></a>
               </div>
             </div>
-            <div class="row gy-5">
+            <div class="row gy-5 text-center">
               <div class="col-lg-4 col-md-6 trending-item">
                 <a href="khamphakieutoc.php"><img src="img/team_member1.jpg" alt=""></a>
                 <p class="item">gentlement hairstyles</p>
@@ -219,8 +219,8 @@ if($rows == 1){
         <div class="container">
           <div class="row gy-5 ">
             <div class="product__top">
-              <h1 class="text-color text-left">Sản Phẩm</h1 text-item>
-              <a href="product.php"><button class="text-color">Tất cả sản phẩm</button></a>
+              <h1 class="text-color text-left text-sm-center">Sản Phẩm</h1 text-item>
+              <a href="product.php"><button class="text-color d-sm-none d-none d-lg-block d-md-block">Tất cả sản phẩm</button></a>
             </div>
             <div class="product-bottom">
             <?php
@@ -231,12 +231,12 @@ if($rows == 1){
               <div class="col-lg-3">
                 <a href="product-details.php?id=<?= $row['id']?>"><div class="product-slide">
                   <img src="img/sanpham/<?php echo $row['product_img']; ?>" alt="">
-                  <p class="descript"><a href="product-details.php?id=<?= $row['id']?>"><?= $row['product_name'] ?></p>
-                  <ul class="price">
+                  <p class="descript d-sm-none d-none"><a href="product-details.php?id=<?= $row['id']?>"><?= $row['product_name'] ?></p>
+                  <ul class="price d-sm-none d-none">
                     <li class="price-now"><?= number_format($row['product_cost'], 0, ",", ".") ?></li>
                     <li class="price-old"><del><?= number_format($row['product_oldcost'], 0, ",", ".") ?></del></li>
                   </ul>
-                  <button class="buy">MUA NGAY <i class="ri-arrow-right-line"></i></button>
+                  <button class="buy d-sm-none d-none">MUA NGAY <i class="ri-arrow-right-line"></i></button>
               </div>
               </a></div>
               <?php } ?>
@@ -336,7 +336,7 @@ if($rows == 1){
     
     <!-- TEAM -->
     <section id="team">
-      <div class="container">
+      <div class="container text-center">
           <div class="row">
               <div class="col-12 intro text-center">
                     <h1 class="text-color">Gặp Đồng Nghiệp Của Tôi</h1>
@@ -345,7 +345,7 @@ if($rows == 1){
           </div>
 
           <div class="row gy-5 text-center">
-            <div class="col-lg-4 col-md-6 text-center">
+            <div class="col-lg-4 col-md-6 col-sm-10">
                 <div class="team-member">
                   <div class="img">
                     <img src="img/team_member1.jpg" alt="">
@@ -361,7 +361,7 @@ if($rows == 1){
                   <button>Contact Me</button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="team-member text-center">
                   <div class="img">
                     <img src="img/team_member2.jpg" alt="">
@@ -377,7 +377,7 @@ if($rows == 1){
                   <button>Contact Me</button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="team-member">
                   <div class="img">
                     <img src="img/team_member3.jpg" alt="">
@@ -583,8 +583,8 @@ if($rows == 1){
                   <input type="text" name="phone" require= "" class="form-control" placeholder="Phone Number">
                 </div>  
                 <div class="row gy-2">
-                  <input class="col-5" type="text" name="ngay" class="form-control" placeholder="DD/MM/YYYY">
-                  <select class="col-3" name="gio">
+                  <input class="col-4 col-lg-5 col-md-4 col-sm-4" type="text" style="background-color: var(--bg2); border:none;" name="ngay" class="form-control" placeholder="DD/MM/YYYY">
+                  <select class="col-3 col-md-3 col-sm-3" name="gio">
                     <option value="7 giờ">7 giờ</option>
                     <option value="8 giờ">8 giờ</option>
                     <option value="9 giờ">9 giờ</option>
@@ -603,7 +603,7 @@ if($rows == 1){
                                     <option value="22 giờ">22 giờ</option>
                     <option value="23 giờ">23 giờ</option>
                                     </select>
-                  <select class="col-3" name="phut" class="form-group col-auto">
+                  <select class="col-3 col-md-3 col-sm-3" name="phut" class="form-group col-auto">
                     <option value="00 phút">00 phút</option>
                     <option value="05 phút">05 phút</option>
                     <option value="10 phút">10 phút</option>
@@ -685,13 +685,13 @@ if($rows == 1){
     <!-- TÌM KIẾM VỊ TRÍ -->
     <section id="search-address">
       <div class="container">
-        <div class="row search__addr">
+        <div class="row search__addr gy-3">
           <ul class="search__addr-top">
               <li class="search__addr-top">
                 <h3>Tìm Shop Gần Nhất</h3>
                 <p>Để xe thuận tiện an toàn, bản đồ dẫn đường chi tiết(20 salon)</p>
               </li>
-              <li class="search__addr-top">
+              <li class="search__addr-top d-md-none d-sm-none d-lg-block d-none">
                 <a href=""><button><p>Xem tất cả <i class="ri-arrow-right-s-line"></i></p></button></a>
               </li>
           </ul>
@@ -790,9 +790,3 @@ $('.js-filter').on('click', function(){
   </script>
 </body>
 </html>
-
-
-
-<?php
-    include "footer.php"
-?>

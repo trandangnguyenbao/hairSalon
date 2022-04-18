@@ -156,7 +156,7 @@ if (!isset($_SESSION["user"])) {
                             </div>
                             <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
-                    </div>
+                    </div>  
                 </div>
 
                 <div    class="row my-5">

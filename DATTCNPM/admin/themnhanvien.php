@@ -10,9 +10,14 @@
         $type = $_POST['type'];
         $chucvu = $_POST['chucvu'];
         $chinhanh = $_POST['chinhanh'];
-        $sql = "INSERT INTO `khachhang` (username, password,hoten , chucvu,chinhanh, type) VALUES('$username', '$password', '$hoten', '$chucvu', '$chinhanh' , '$type')";
+        $gioitinh = $_POST['gioitinh'];
+        $ngaysinh = $_POST['ngaysinh'];
+        $noisinh = $_POST['noisinh'];
+        $background = $_FILES['background']['name'];
+        $image_tmp = $_FILES['background']['tmp_name'];
+        $sql = "INSERT INTO `khachhang` (username, password,hoten , chucvu,chinhanh, type,background, noisinh,gioitinh,ngaysinh) VALUES('$username', '$password', '$hoten', '$chucvu', '$chinhanh' , '$type', '$background','$noisinh' , '$gioitinh',  '$ngaysinh')";
         $query = mysqli_query($conn, $sql);
-        // move_uploaded_file($image_tmp, '../img/kieutoc/'.$img);
+        move_uploaded_file($image_tmp, '../img/'.$background);
         header('location: quanlynhanvien.php');
     }
     if(isset($_POST['sbm'])){
@@ -73,6 +78,26 @@
                 <div class="form-group">
                     <label>Mật Khẩu</label>
                     <input type="password" name="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Giới Tính</label>
+                    <select name="gioitinh" id="">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ngày Sinh</label>
+                    <input type="text" name="ngaysinh" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Nơi Sinh</label>
+                    <input type="text" name="noisinh" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Hình Ảnh</label>
+                    <input type="file" name="background" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Phân Quyền</label><br>

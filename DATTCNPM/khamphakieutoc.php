@@ -30,9 +30,9 @@
     <section id="menu ">
         <div class="container">
             <div class="row gy-5">
-                <div class="col-lg-12 col-md-12 menu-list text-center">
+                <div class="col-lg-12 col-md-12 col-sm-12 menu-list text-center">
                     <a href="khamphakieutoc.php"><div class="menu-item active">Discover</div></a>
-                    <a href=""><div class="menu-item">Style Master</div></a>
+                    <a href=""><div class="menu-item d-none d-lg-block d-md-block d-sm-none">Style Master</div></a>
                     <a href="lookbook.php"><div class="menu-item">Lookbook</div></a>
                 </div>
                 <p class="text-center menu-title">CÙNG QDB BARBER KHÁM PHÁ
@@ -49,7 +49,7 @@
                 $result=mysqli_query($conn, "SELECT * FROM `mautoc`");
                 while ($row = mysqli_fetch_array($result)){
             ?>
-                <div class="col-lg-3 col-md-4 khamphakieutoc">
+                <div class="col-lg-3 col-md-4 col-12 col-sm-6 khamphakieutoc">
                 <div class="kieutoc"><a href="<?php echo $row['link_content']?>">
                   <img src="img/kieutoc/<?php echo $row['img']; ?>" alt="">
                     <p><?php echo $row['title']; ?></p>

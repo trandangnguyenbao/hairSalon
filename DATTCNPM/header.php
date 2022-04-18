@@ -25,21 +25,33 @@ if (!isset($_SESSION["user"])) {
      <!-- NAVBAR -->
      
      <nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-expand fixed-top">
-      <div class="container-fluid">
+      <div class="container-fluid" style="display: flex; justify-content: space-between;">
         <a class="navbar-brand" href="#"><img class="logo" src="img/logo.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse ms-lg-auto ms-md-12" id="navbarNav">
-          <ul class="navbar-nav ms-lg-auto ms-md-auto ms-sm-auto ms-auto Menu-Items">
+          <ul class="navbar-nav ms-lg-auto ms-md-auto ms-sm-auto ms-auto" id="itemList">
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.php" >Trang Chủ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="hanhtrinhtoasang.php">Hành Trình Toả Sáng</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item hidden">
               <a class="nav-link" aria-current="page" href="index.php#booking">Đặt Lịch</a>
+            </li>
+            <li class="nav-item d-lg-none d-md-none">
+                  <a class="nav-link" aria-current="page" href="danhgia.php">Đánh Giá</a>
+            </li>
+            <li class="nav-item d-lg-none d-md-none">
+              <a class="nav-link" aria-current="page" href="product.php">BarBer Shop</a>
+            </li>
+            <li class="nav-item d-lg-none d-md-none">
+              <a class="nav-link" aria-current="page" href="khamphakieutoc.php">Khám Phá Kiểu Tóc</a>
+            </li>
+            <li class="nav-item d-md-none d-lg-none">
+              <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
             </li>
             <!-- List Menu -->
             <li class="nav-dropdown">TÌM HIỂU THÊM
@@ -53,23 +65,31 @@ if (!isset($_SESSION["user"])) {
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="khamphakieutoc.php">Khám Phá Kiểu Tóc</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-md-none d-sm-none d-lg-block">
                   <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
+                </li>
+                <li class="nav-item hidden">
+                  <a class="nav-link" aria-current="page" href="index.php#booking">Đặt Lịch</a>
                 </li>
                 <li class="nav-item hidden">
                   <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
                 </li>
               </ul>
               <!-- List Menu -->
-              <li class="nav-item ms-xs">
-                <a class="nav-link" aria-current="page" href="logout.php"><?php 
-                    if (isset($_SESSION['user']) && $_SESSION['user']){
+              <li class="nav-item nav-dropdown"><?php 
+              if (isset($_SESSION['user']) && $_SESSION['user']){
                         echo $_SESSION['user'];
                     }
                     else{
                         echo 'Bạn chưa đăng nhập';
                     }
-                ?></a>
+                    ?>
+                <ul class="nav-link nav__item">
+                    
+                  <li class="nav-item"><a class="nav-link" href="taikhoan.php">Tài Khoản Của Tôi</a></li>
+                  <li class="nav-item"><a class="nav-link" href="donhang.php">Đơn Hàng</a></li>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Đăng Xuất</a></li>
+                </ul>
               </li>
             </li>
             <li class="nav-item">
@@ -77,16 +97,15 @@ if (!isset($_SESSION["user"])) {
             </li>
 
               <!-- Menu-dropdown -->
-              <div class="menu">
-                  <div class="menu__icon">
-                    <i class="ri-menu-line" onclick="menutoggle()">
-                    </i>
-                  </div>
-                 
-              </div>
               
               <!-- Menu-dropdown -->
           </ul>
+          <div class="menu menu-icon">
+                  <div class="menu__icon" >
+                    <i class="ri-menu-line" onclick="menutoggle()">
+                    </i>
+                  </div>
+              </div>
           <!-- <a href="#" class="btn btn-outline-brand ms-lg-3">Book Now</a> -->
         </div>
       </div>
@@ -154,18 +173,19 @@ $('.js-filter').on('click', function(){
 });
   </script>
    <script>
-        var navbar = document.getElementById("MenuItems");
+        var navbar = document.getElementById("itemList");
 
-            MenuItems.style.maxHeight = "0px";
+        itemList.style.maxHeight = "0px";
 
         function menutoggle(){
-            if(MenuItems.style.maxHeight == "0px")
+            console.log('itemList');
+            if(itemList.style.maxHeight == "0px")
                 {
-                    MenuItems.style.maxHeight = "200px";
+                  itemList.style.maxHeight = "100vh";
                 }
             else
                 {
-                    MenuItems.style.maxHeight = "0px";
+                  itemList.style.maxHeight = "100vh";
                 }
                
 }

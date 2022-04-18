@@ -1,25 +1,4 @@
-style.css
-Người có quyền truy cập
-T
-Thuộc tính hệ thống
-Loại
-Biểu định kiểu
-Kích thước
-30 KB
-Bộ nhớ đã sử dụng
-30 KB
-Vị trí
-css
-Chủ sở hữu
-tôi
-Lần sửa đổi gần đây nhất
-10 thg 4, 2022 do tôi thực hiện
-Đã mở
-21:27 do tôi thực hiện
-Người tạo
-11 thg 4, 2022 bằng Google Drive Web
-Thêm mô tả
-Người xem có thể tải xuống
+
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap');
 *{
@@ -109,12 +88,13 @@ li.nav-dropdown .nav__item{
 ul.nav__item{
     position: absolute;
     list-style: none;
-    top: 100%;
+    top: 407%;
+    left: 10px;
     height: auto;
     width: 220px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #5e5d5d;
     transition: 0.5s ease;
-    padding: 0px 20px;
+    padding: 0 20px;
 }
 
 .menu i{
@@ -125,6 +105,15 @@ ul.nav__item{
     padding-left: 35px;
     /* padding-top: 40px; */
 }
+
+ul.account:hover li.account-item{
+    display: block;
+}
+
+li.account-item{
+    display: none;
+}
+
 /* List-Menu */
 
 
@@ -719,14 +708,14 @@ li.price-now{
 .row > .row{
     margin-left: 0px;
 }
-input.col-5{
+input.col-4{
     background-color: var(--bg2);
     outline: none;
     border: none;
     color: var(--body);
 }
 
-input.col-5:focus{
+input.col-4:focus{
     border-left: 2px solid #FFAB76;
 }
 select.col-3{
@@ -1368,7 +1357,7 @@ ul.shop-addr a{
 
 .khamphakieutoc p{
     position: absolute;
-    top: 85%;
+    top: 75%;
     padding: 0 10px;
     font-size: 18px;
     font-weight: 600;
