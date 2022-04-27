@@ -166,17 +166,8 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                            <?php
-                                    include "../config.php";
-                                    $result = mysqli_query($conn, "SELECT * FROM donhang");
-                                    $i=0;
-                                    $Doanhthu = 0;
-                                    while ($row = mysqli_fetch_assoc($result)){              
-                                    $i++;		
-                                    $Doanhthu = $Doanhthu + $row['tongtien'];}
-                                ?>
-                                <p class="fs-5">Doanh Thu</p>
-                                <h3 class="fs-2" style="color: #000;"><?php echo $Doanhthu?></h3>
+                                <p class="fs-5">Tăng Trưởng</p>
+                                <h3 class="fs-2" style="color: #000;">25%</h3>
                             </div>
                             <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>

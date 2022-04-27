@@ -165,17 +165,10 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                            <?php
-                                    include "../config.php";
-                                    $result = mysqli_query($conn, "SELECT * FROM donhang");
-                                    $i=0;
-                                    $Doanhthu = 0;
-                                    while ($row = mysqli_fetch_assoc($result)){              
-                                    $i++;		
-                                    $Doanhthu = $Doanhthu + $row['tongtien'];}
-                                ?>
-                                <p class="fs-5">Doanh Thu</p>
-                                <h3 class="fs-2" style="color: #000;"><?php echo $Doanhthu?></h3>
+                            <div>
+                                <p class="fs-5">Tăng Trưởng</p>
+                                <h3 class="fs-2" style="color: #000;">25%</h3>
+                            </div>
                             </div>
                             <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>
@@ -290,8 +283,8 @@ if (!isset($_SESSION["user"])) {
                                     <td><?php echo $row['chinhanh']?></td>
                                     <td><?php echo $row['tinhtrang']?></td>
                                     <td>
-                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="sualichhen.php?id_lh=<?php echo $row['id_lh']?>">Sửa</a>
-                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoalichhen.php?id_lh=<?php echo $row['id_lh']?>">Xóa</a>
+                                        <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="sualichhen.php?id_lichhen=<?php echo $row['id_lichhen']?>">Sửa</a>
+                                        <a class="btn btn-danger" style="line-height: 40px; padding: 0px 20px; background-color:#dc3545; border-radius: 0.25rem;" href="xoalichhen.php?id_lichhen=<?php echo $row['id_lichhen']?>">Xóa</a>
                                     </td>  
                                 </tr>
                             <?php }?>

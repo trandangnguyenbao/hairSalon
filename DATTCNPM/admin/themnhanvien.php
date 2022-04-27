@@ -21,7 +21,7 @@
         header('location: quanlynhanvien.php');
     }
     if(isset($_POST['sbm'])){
-        $username = $_POST['username'];
+        $username = $_POST['hoten'];
         $chinhanh = $_POST['chinhanh'];
         $chucvu = $_POST['chucvu'];
         $sql = "INSERT INTO `calam` (tennv, chinhanh,chucvu) VALUES('$username', '$chinhanh', '$chucvu')";
@@ -111,6 +111,7 @@
                     <select name="chucvu" id="" style="height: 38px;">
                         <option value="Nhân Viên Tư Vấn">Nhân Viên Tư Vấn</option>
                         <option value="Barber">Barber</option>
+                        <option value="admin">admin</option>
                     </select>
                 </div>
                 <div class="form-group">

@@ -10,10 +10,10 @@ if ($connect->connect_error) {
      die("Không kết nối :" . $conn->connect_error);
     exit();
 }
-if(isset($_GET['id_lh'])){
-	$id_lh = $_GET['id_lh'];
+if(isset($_GET['id_lichhen'])){
+	$id_lichhen = $_GET['id_lichhen'];
 }
-$sql = "DELETE FROM lichhen WHERE id_lh=$id_lh";
+$sql = "DELETE FROM lichhen WHERE id_lichhen=$id_lichhen";
 if($connect->query($sql) == TRUE){
     header("location:quanlylichhen.php");
 }

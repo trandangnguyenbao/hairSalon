@@ -28,7 +28,7 @@ if (!isset($_SESSION["user"])) {
                         class="fas fa-shopping-bag me-2"></i>Trang chủ</a>
                         <a href="xemthongtin.php" class="list-group-item list-group-item-action bg-transparent second-text"><img src="../img/account/download.png" alt="">Xem Thông Tin</a>
             <a href="xemlichlam.php" class="list-group-item list-group-item-action bg-transparent second-text  active"><i class="fa fa-eye" aria-hidden="true"></i> Xem Lịch Làm</a>
-                <a href="../doimatkhau.php" class="list-group-item list-group-item-action bg-transparent second-text"><i
+                <a href="doimatkhau.php" class="list-group-item list-group-item-action bg-transparent second-text"><i
                         class="fas fa-power-off me-2"></i>Đổi Mật Khẩu</a>
                 <a href="../logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Đăng xuất</a>
@@ -140,9 +140,12 @@ if (!isset($_SESSION["user"])) {
                             if (isset($_SESSION['user']) && $_SESSION['user']){
                                 include '../config.php';
                                 $username = $_SESSION['user'];
-                                $result=mysqli_query($conn, "SELECT * FROM calam where tennv = '$username'");
+                                $sql=mysqli_query($conn, "SELECT * FROM khachhang where username = '$username'");
+                                $rows = mysqli_fetch_assoc($sql);
+                                $tennv = $rows['hoten'];
+                                $result=mysqli_query($conn, "SELECT * FROM calam where tennv = '$tennv'");
                                 $row = mysqli_fetch_assoc($result);
-                                $totalRecords = mysqli_query($conn, "SELECT * FROM calam where tennv = '$username'");
+                                $totalRecords = mysqli_query($conn, "SELECT * FROM calam where tennv = '$tennv'");
                                 $totalRecords = $totalRecords->num_rows;
                                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                                 $limit = 6;
@@ -159,7 +162,7 @@ if (!isset($_SESSION["user"])) {
                                 
                                 $i = 1;
                                 $start = ($current_page - 1) * $limit;
-                                $result = mysqli_query($conn, "SELECT * FROM calam where tennv = '$username' LIMIT $start, $limit");
+                                $result = mysqli_query($conn, "SELECT * FROM calam where tennv = '$tennv' LIMIT $start, $limit");
                                 while ($row = mysqli_fetch_array($result)){
                             ?>
                                 <tr>

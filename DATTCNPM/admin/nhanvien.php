@@ -28,7 +28,7 @@ if (!isset($_SESSION["user"])) {
                         class="fas fa-shopping-bag me-2"></i>Trang chủ</a>
             <a href="xemthongtin.php" class="list-group-item list-group-item-action bg-transparent second-text"><img src="../img/account/download.png" alt="">Xem Thông Tin</a>
             <a href="xemlichlam.php" class="list-group-item list-group-item-action bg-transparent second-text"><i class="fa fa-eye" aria-hidden="true"></i> Xem Lịch Làm</a>
-                <a href="../doimatkhau.php" class="list-group-item list-group-item-action bg-transparent second-text"><i
+                <a href="doimatkhau.php" class="list-group-item list-group-item-action bg-transparent second-text"><i
                         class="fas fa-power-off me-2"></i>Đổi Mật Khẩu</a>
                 <a href="../logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Đăng xuất</a>

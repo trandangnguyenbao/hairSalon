@@ -1,16 +1,17 @@
 <?php
     include 'config.php';
     $id = $_GET['id'];
-    $sql = "SELECT * FROM `calam` WHERE id = $id";
+    $sql = "SELECT * FROM `khachhang` WHERE id = $id";
     $query = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($query);
 
-    if(isset($_POST['sua'])){
+    if(isset($_POST['sbm'])){
+        $tennv = $_POST['tennv'];
+        $chinhanh = $_POST['chinhanh'];
         $calam = $_POST['calam'];
         $ngaylam = $_POST['ngaylam'];
-        $tinhtrang = $_POST['tinhtrang'];
-        $sql = "UPDATE `calam` SET calam = '$calam', ngaylam = '$ngaylam', tinhtrang = '$tinhtrang' WHERE id = $id";
-
+        $chucvu = $_POST['chucvu'];
+        $sql = "INSERT INTO calam(tennv, chinhanh, calam, ngaylam, chucvu) value ('$tennv', '$chinhanh', '$calam', '$ngaylam', '$chucvu')";
         $query = mysqli_query($conn, $sql);
         header('location: quanlycalam.php');
     }
@@ -45,14 +46,22 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h2>Cập Nhật Ca Làm</h2>
+            <h2>Tạo Lịch Làm</h2>
         </div>
 
         <div class="card-body">
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>Ca Làm</label><br>
-                    <select name="calam" id="" style="height: 40px;">
+                    <label>Tên Nhân Viên</label>
+                    <input type="text" name="tennv" class="form-control" value="<?php echo $row['hoten']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Chi Nhánh</label>
+                    <input type="text" name="chinhanh" class="form-control" value="<?php echo $row['chinhanh']; ?>">
+                </div>
+                <div class="form-group">
+                    <label>Ca Làm</label>
+                    <select name="calam" id="" style="padding: 5px 20px;">
                         <option value="Ca 1">Ca 1</option>
                         <option value="Ca 2">Ca 2</option>
                         <option value="Ca 3">Ca 3</option>
@@ -60,17 +69,13 @@
                 </div>
                 <div class="form-group">
                     <label>Ngày Làm</label>
-                    <input type="date" name="ngaylam" class="form-control" value="<?php echo $row['ngaylam']?>" >
+                    <input type="text" name="ngaylam" class="form-control" value="" placeholder="YYYY/MM/DD">
                 </div>
                 <div class="form-group">
-                    <label>Chấm Công</label><br>
-                    <select name="tinhtrang" id="" style="height: 40px;">
-                        <option value="Hoàn Thành">Hoàn Thành</option>
-                        <option value="Nghỉ Làm">Nghỉ Làm</option>
-                        <option value="Đi Trễ">Đi Trễ</option>
-                    </select>
+                    <label>Chức Vụ</label>
+                    <input type="text" name="chucvu" class="form-control" value="<?php echo $row['chucvu']; ?>">
                 </div>
-                    <input type="submit" name="sua" class="btn btn-success"></input>
+                <input type="submit" name="sbm" class="btn btn-success"></input>
             </form>
         </div>
     </div>

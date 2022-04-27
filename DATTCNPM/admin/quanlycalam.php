@@ -132,17 +132,10 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                         <div>
-                            <?php
-                                    include "../config.php";
-                                    $result = mysqli_query($conn, "SELECT * FROM chinhanh");
-                                    $i=0;
-                                    $doanhthu = 0;
-                                    while ($row = mysqli_fetch_assoc($result)){              
-                                    $i++;		
-                                    $doanhthu = $doanhthu + $row['doanhthu'];}
-                                ?>
-                                <p class="fs-5">Doanh Thu</p>
-                                <h3 class="fs-2" style="color: #000;"><?php echo $doanhthu?></h3>
+                        <div>
+                                <p class="fs-5">Tăng Trưởng</p>
+                                <h3 class="fs-2" style="color: #000;">25%</h3>
+                            </div>
                             </div>
                             <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>

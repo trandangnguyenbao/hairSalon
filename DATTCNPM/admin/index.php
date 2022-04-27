@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("location:../logout.php");
+    header("location:../account.php");
 }
 ?>
 <!DOCTYPE html>
@@ -132,8 +132,8 @@ if (!isset($_SESSION["user"])) {
                     <div class="col-md-3">
                         <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <h3 class="fs-2">%25</h3>
                                 <p class="fs-5">Tăng trưởng</p>
+                                <h3 class="fs-2" style="color: #000; font-weight: bolder;">%25</h3>
                             </div>
                             <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                         </div>

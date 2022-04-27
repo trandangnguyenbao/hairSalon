@@ -1730,3 +1730,7 @@ li.login-note p{
 
 
 /* LOGIN CSS */
+
+section#account{
+    background-color: var(--bg2);
+}

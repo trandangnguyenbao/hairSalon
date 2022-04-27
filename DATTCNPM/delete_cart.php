@@ -10,10 +10,10 @@ if ($connect->connect_error) {
      die("Không kết nối :" . $conn->connect_error);
     exit();
 }
-if(isset($_GET['id'])){
-	$id = $_GET['id'];
+if(isset($_GET['id_giohang'])){
+	$id_giohang = $_GET['id_giohang'];
 }
-$sql = "DELETE FROM giohang WHERE id=$id";
+$sql = "DELETE FROM giohang WHERE id_giohang=$id_giohang";
 if($connect->query($sql) == TRUE){
     header("location:shopping-cart.php");
 }

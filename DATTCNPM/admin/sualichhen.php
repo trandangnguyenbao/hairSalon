@@ -6,8 +6,8 @@ $server = "localhost"; // Khai báo server
 $dbname = "barbershop"; // Khai báo database
 // Kết nối database tintuc
 include 'config.php';
-    $id_lh = $_GET['id_lh'];
-    $sql = "SELECT * FROM `lichhen` WHERE id_lh = $id_lh";
+    $id_lichhen = $_GET['id_lichhen'];
+    $sql = "SELECT * FROM `lichhen` WHERE id_lichhen = $id_lichhen";
     $query = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($query);
 $connect = mysqli_connect($server, $username, $password, $dbname);
@@ -18,13 +18,13 @@ if (!$connect) {
     exit();
 }
 if (isset($_POST['sua'])){
-    $id_lh = $_GET['id_lh'];
+    $id_lichhen = $_GET['id_lichhen'];
     $name=$_POST['name'];
     $ngay=$_POST['ngay'];
     $chinhanh=$_POST['chinhanh'];
     $thoigian=$_POST['gio'].':'.$_POST['phut'];
     $tinhtrang=$_POST['tinhtrang'];
-    $sql = "UPDATE lichhen SET name='$name', ngay = '$ngay', thoigian = '$thoigian', chinhanh = '$chinhanh', tinhtrang = '$tinhtrang'  WHERE id_lh=$id_lh";
+    $sql = "UPDATE lichhen SET name='$name', ngay = '$ngay', thoigian = '$thoigian', chinhanh = '$chinhanh', tinhtrang = '$tinhtrang'  WHERE id_lichhen=$id_lichhen";
     $query = mysqli_query($connect,$sql);
     if($query == TRUE){
         $_SESSION['update'] = "Cập nhật lịch hẹn thành công!";

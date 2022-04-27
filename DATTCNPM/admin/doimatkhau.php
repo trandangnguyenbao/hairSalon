@@ -57,9 +57,9 @@ if (isset($_POST['sbm'])){
             <div class="list-group list-group-flush my-3">
             <a href="nhanvien.php" class="list-group-item list-group-item-action bg-transparent second-text "><i
                         class="fas fa-shopping-bag me-2"></i>Trang chủ</a>
-            <a href="xemthongtin.php" class="list-group-item list-group-item-action bg-transparent second-text active"><img src="../img/account/download.png" alt="">Xem Thông Tin</a>
+            <a href="xemthongtin.php" class="list-group-item list-group-item-action bg-transparent second-text"><img src="../img/account/download.png" alt="">Xem Thông Tin</a>
             <a href="xemlichlam.php" class="list-group-item list-group-item-action bg-transparent second-text"><i class="fa fa-eye" aria-hidden="true"></i> Xem Lịch Làm</a>
-                <a href="doimatkhau.php" class="list-group-item list-group-item-action bg-transparent second-text"><i
+                <a href="doimatkhau.php" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-power-off me-2"></i>Đổi Mật Khẩu</a>
                 <a href="../logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Đăng xuất</a>
@@ -171,7 +171,7 @@ if (isset($_POST['sbm'])){
                         <input type="text" disabled value="<?php echo $row['chinhanh']?>" style="font-size: 20px; color:#000;height: 40px; width:626px ;margin-bottom: 10px;"><br>
                         <label for="" style="width:100px; font-weight: bolder;">Chức Vụ:</label>
                         <input type="text" disabled value="<?php echo $row['chucvu']?>" style="font-size: 20px; color:#000;height: 40px; width: 626px;margin-bottom: 50px; background-color: #d4d4d4; border: none; outline: none;"><br>
-                        <input type="submit" value="Sửa Thông Tin" name="sbm" style="height: 50px; width: 200px; background-color: #d4d4d4; margin-left: 300px;">
+                        <input type="submit" value="Đổi Mật Khẩu" name="sbm" style="height: 50px; width: 200px; background-color: #EA8025; color:#fff; font-weight: bolder; margin-left: 300px;">
                         <?php }}?>
                     </form>
                 </div>
