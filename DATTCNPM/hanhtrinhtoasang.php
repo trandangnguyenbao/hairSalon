@@ -28,8 +28,8 @@
     <section id="hanhtrinhtoasang">
         <div class="container">
             <div class="row gy-4 gx-5">
-                <h3 class="text-title text-center">HÀNH TRÌNH TOẢ SÁNG</h3>
-                <p>Quá trình tìm kiếm và hoàn thiện bản thân là bất tận. Mỗi kiểu tóc mới đại diện một tinh thần mới mà người đàn ông luôn hướng đến để tìm thấy phiên bản tốt nhất của chính mình. Hãy cùng lắng nghe những câu chuyện hành trình lột xác dưới đây để tìm thấy niềm cảm hứng đổi mới cho bạn.</p>
+                <h3 class="text-title text-center" style="color:var(--brand)">HÀNH TRÌNH TOẢ SÁNG</h3>
+                <p style="color:#d9d9d9;">Quá trình tìm kiếm và hoàn thiện bản thân là bất tận. Mỗi kiểu tóc mới đại diện một tinh thần mới mà người đàn ông luôn hướng đến để tìm thấy phiên bản tốt nhất của chính mình. Hãy cùng lắng nghe những câu chuyện hành trình lột xác dưới đây để tìm thấy niềm cảm hứng đổi mới cho bạn.</p>
                 <?php
                 include 'config.php';
                 $result=mysqli_query($conn, "SELECT * FROM `video_gioithieu` where show_width = '2'");

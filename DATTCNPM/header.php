@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("location:account.php");
+  header("location:account.php");
 }
 ?>
 <!DOCTYPE html>
@@ -20,6 +20,74 @@ if (!isset($_SESSION["user"])) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css"> 
     <title>hair salon</title>
+    <style>
+     @media (min-width:801px) and (max-width:992px){
+      li.menu__icon{
+        display: none;
+      }
+      a.nav-link{
+        font-size: 16px;
+        font-weight: 500;
+      }
+      li.hidden{
+        display: none;
+      }
+      li.account_hidden{
+        display: none;
+      }
+
+    }
+      @media (min-width:320px) and (max-width:801px){
+        li.menu__icon{
+          position: relative;
+          left: 90%;
+          list-style-type: none;
+        }
+        li.nav-dropdown{
+          display: none;
+        }
+        ul.navbar-nav{
+          display: block;
+          flex-direction: column;
+          padding-left: 25px;
+        }
+        li.nav-item{
+          display: block;
+          background-color: #fff;
+          border-radius: 5px;
+          border: 1px solid #d5d5d5;
+          box-shadow: 0px 10px 15px #d5d5d5;
+        }
+        a.nav-link{
+          color:#000 ;
+          margin: 0;
+          padding: 10px;
+        }
+        .nav__item > li.hidden{
+          display: block;
+        }
+        li.account_hidden{
+          background-color: transparent;
+          position: absolute;
+          margin-top: -10px;
+          padding-right: 50px;
+        }
+        nav ul {
+          position: fixed;
+          top: 94px;
+          left: 0;
+          background: #fff;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          transition: max-height 0.5s;
+      }
+        li.account{
+          display: none;
+        }
+      }
+
+    </style>
 </head>
 <body id="home" data-bs-spy="scroll" data-bs-target=".navbar">
      <!-- NAVBAR -->
@@ -41,42 +109,74 @@ if (!isset($_SESSION["user"])) {
             <li class="nav-item hidden">
               <a class="nav-link" aria-current="page" href="index.php#booking">Đặt Lịch</a>
             </li>
-            <li class="nav-item d-lg-none d-md-none">
+            <li class="nav-item hidden d-lg-none">
                   <a class="nav-link" aria-current="page" href="danhgia.php">Đánh Giá</a>
             </li>
-            <li class="nav-item d-lg-none d-md-none">
+            <li class="nav-item hidden d-lg-none">
               <a class="nav-link" aria-current="page" href="product.php">BarBer Shop</a>
             </li>
-            <li class="nav-item d-lg-none d-md-none">
+            <li class="nav-item hidden d-lg-none">
               <a class="nav-link" aria-current="page" href="khamphakieutoc.php">Khám Phá Kiểu Tóc</a>
             </li>
-            <li class="nav-item d-md-none d-lg-none">
+            <li class="nav-item d-md-none hidden-search">
               <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
             </li>
+            <li class="nav-item hidden">
+                  <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
+                </li>
             <!-- List Menu -->
             <li class="nav-dropdown">TÌM HIỂU THÊM
               <ul class="nav__item">
-                <li class="nav-item">
+                <li class="nav-item ">
                   <a class="nav-link" aria-current="page" href="danhgia.php">Đánh Giá</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ">
                   <a class="nav-link" aria-current="page" href="product.php">BarBer Shop</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="khamphakieutoc.php">Khám Phá Kiểu Tóc</a>
                 </li>
-                <li class="nav-item d-md-none d-sm-none d-lg-block">
+                <li class="nav-item d-sm-none d-lg-block d-md-block">
                   <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
                 </li>
                 <li class="nav-item hidden">
                   <a class="nav-link" aria-current="page" href="index.php#booking">Đặt Lịch</a>
                 </li>
-                <li class="nav-item hidden">
+                <li class="nav-item hidden search">
                   <a class="nav-link" aria-current="page" href="searchshop.php">Tìm Shop Gần Nhất</a>
                 </li>
               </ul>
               <!-- List Menu -->
-              <li class="nav-item nav-dropdown"><?php 
+              <li class="nav-item nav-dropdown account "><?php 
+              if (isset($_SESSION['user']) && $_SESSION['user']){
+                        echo $_SESSION['user'];
+                    }
+                    else{
+                        echo 'Bạn chưa đăng nhập';
+                    }
+                    ?>
+                <ul class="nav-link nav__item">
+                    
+                  <li class="nav-item"><a class="nav-link" href="taikhoan.php">Tài Khoản Của Tôi</a></li>
+                  <li class="nav-item"><a class="nav-link" href="donhang.php">Đơn Hàng</a></li>
+                  <li class="nav-item"><a class="nav-link" href="quanlylichhen.php">Lịch Hẹn</a></li>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Đăng Xuất</a></li>
+                </ul>
+              </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="shopping-cart.php"><i style="font-size: 25px;" class="ri-shopping-cart-fill"></i></a>
+            </li>
+
+              <!-- Menu-dropdown -->
+              
+              <!-- Menu-dropdown -->
+          </ul>
+                  <li class="menu__icon" >
+                    <i class="ri-menu-line" onclick="menutoggle()">
+                    </i>
+                  </li>
+                  <li class="nav-item nav-dropdown account_hidden hidden" style="list-style: none;"><?php 
               if (isset($_SESSION['user']) && $_SESSION['user']){
                         echo $_SESSION['user'];
                     }
@@ -91,21 +191,6 @@ if (!isset($_SESSION["user"])) {
                   <li class="nav-item"><a class="nav-link" href="logout.php">Đăng Xuất</a></li>
                 </ul>
               </li>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="shopping-cart.php" style=" margin-top: -10px;"><i style="font-size: 25px;" class="ri-shopping-cart-fill"></i></a>
-            </li>
-
-              <!-- Menu-dropdown -->
-              
-              <!-- Menu-dropdown -->
-          </ul>
-          <div class="menu menu-icon">
-                  <div class="menu__icon" >
-                    <i class="ri-menu-line" onclick="menutoggle()">
-                    </i>
-                  </div>
-              </div>
           <!-- <a href="#" class="btn btn-outline-brand ms-lg-3">Book Now</a> -->
         </div>
       </div>
@@ -173,22 +258,30 @@ $('.js-filter').on('click', function(){
 });
   </script>
    <script>
-        var navbar = document.getElementById("itemList");
-
-        itemList.style.maxHeight = "0px";
+        var itemList = document.getElementById("itemList");
+        var navItem = document.getElementsByClassName("nav-item");
+        var navLink = document.getElementsByClassName("nav-link");
+        // itemList.style.maxWidth = "0px";
 
         function menutoggle(){
             console.log('itemList');
             if(itemList.style.maxHeight == "0px")
                 {
-                  itemList.style.maxHeight = "100vh";
+                  itemList.style.maxHeight = "100%";
+                  itemList.style.flexDirection = "Collumn";
+                  navItem.style.display = "block";
+                  navLink.style.display = "block";
+                  navLink.style.color = "red";
+                  itemList.style.marginTop = "300px";
+                  itemList.style.color = "";
                 }
             else
                 {
-                  itemList.style.maxHeight = "100vh";
-                }
-               
+                  itemList.style.maxHeight = "0px";
+                } 
 }
+
+    
     </script>
   </body>
 </html>

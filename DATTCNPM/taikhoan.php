@@ -50,9 +50,9 @@ include "header.php"
     <section id="account">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-md-9 col-sm-9 thongtintaikhoan" style="background-color: #fff;">
+                <div class="col-lg-9 col-md-9 col-sm-9 thongtintaikhoan" style="background-color: #d8d8d8;">
                     <h3 style="color:var(--brand); margin-top: 50px;">Hồ Sơ Của Tôi</h3>
-                    <p style="color:#000; font-size: 20px; font-weight: 100;">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+                    <p style="color:#000; font-size: 20px; font-weight: 400;">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
                     <hr>
                     <form action="" method="POST" style="height: auto; width: 800px; margin-top: 0px; padding: 30px 30px;">
                     <?php

@@ -83,12 +83,12 @@
                 <div class="col-lg-9 shopping-cart">
                     <table class="shopping__cart">
                         <tr>
-                            <th style="width: 12%;"><input type="checkbox" class="shopping__cart-item"></th>
-                            <th style="width: 100%;">Sản Phẩm</th>
-                            <th style="width: 20%;">Đơn Giá</th>
-                            <th style="width: 50px;">Số Lượng</th>
-                            <th style="width: 20%;">Tạm Tính</th>
-                            <th style="width: 5%;"></th>
+                            <th style="width: 67px;"><input type="checkbox" class="shopping__cart-item"></th>
+                            <th style="width: 212px;">Sản Phẩm</th>
+                            <th style="width: 160px;">Đơn Giá</th>
+                            <th style="width: 125px;">Số Lượng</th>
+                            <th style="width: 125px;">Tạm Tính</th>
+                            <th style="width: 55px;"></th>
                         </tr>
                         <?php
                             if (isset($_SESSION['user']) && $_SESSION['user']){
@@ -113,7 +113,7 @@
                             }
                             
                             $start = ($current_page - 1) * $limit;
-                            $result = mysqli_query($conn, "SELECT * FROM `giohang` where username = $username LIMIT $start, $limit");
+                            $result = mysqli_query($conn, "SELECT * FROM `giohang` where username = $username");
                             // $results = mysqli_query($conn, "SELECT * FROM `product` ");
                             $i=0;
                             $thanhtien = 0;
@@ -163,7 +163,13 @@
                     <hr>
                     <ul class="product-cost" style="display: flex; justify-content: space-between;">
                         <li class="product-cost"><b>Tổng Tiền</b></li>
-                        <li class="product-cost"><input name="tongtien" type="text" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;   " value="<?php echo number_format($thanhtien, 0, ",", ".")?>">đ</li>
+                        <li class="product-cost"><input name="tongtien" type="text" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;" value="<?php echo $thanhtien;?>">đ</li>
+                        <li class="product-cost"><input name="ngaydat" hidden type="text" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;   " value="<?php 
+                        $date = getdate();
+                        echo $date['mday'] . "/" . $date['mon'] . "/" . $date['year'] ?>"></li>
+                        <li class="product-cost"><input name="ngaygiao" hidden type="text" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;   " value="<?php 
+                        $date = getdate();
+                        echo $date['mday'] + 3 . "/" . $date['mon'] . "/" . $date['year'] ?>"></li>
                     </ul>
                     <hr>
                     <input type="submit" value="TIẾN HÀNH ĐẶT HÀNG" name="dathang">

@@ -1,4 +1,5 @@
 <?php
+
 $username = "root"; // Khai báo username
 $password = ""; // Khai báo password
 $server = "localhost"; // Khai báo server

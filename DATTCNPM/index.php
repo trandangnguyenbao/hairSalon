@@ -576,14 +576,25 @@ if($rows == 1){
                   <h1 class="text-color">Booking Now</h1>
                   <p>Quá trình tìm kiếm và hoàn thiện bản thân là bất tận. Mỗi kiểu tóc mới đại diện một tinh thần mới mà người đàn ông luôn hướng đến để tìm thấy phiên bản tốt nhất của chính mình. Hãy cùng lắng nghe những câu chuyện</p>
                 </div>
+                <?php
+                        if (isset($_SESSION['user']) && $_SESSION['user']){
+                        include 'config.php';
+                        $username = $_SESSION['user'];
+                        $result=mysqli_query($conn, "SELECT * FROM `khachhang` where username = '{$username}'");
+                        while ($row = mysqli_fetch_array($result)){
+                    ?>
                 <div class="form-group col-12">
-                  <input type="text" name="name" class="form-control" placeholder="Full Name">
+                  <input type="text" name="name" class="form-control" value="<?php echo $row['hoten']?>">
                 </div>  
                 <div class="form-group col-12">
-                  <input type="text" name="phone" require= "" class="form-control" placeholder="Phone Number">
-                </div>  
+                  <input type="text" name="phone" require= "" class="form-control" value="<?php echo $row['username']?>">
+                </div> 
+                
+                <?php }} ?>
                 <div class="row gy-2">
-                  <input class="col-4 col-lg-5 col-md-4 col-sm-4" type="text" style="background-color: var(--bg2); border:none;" name="ngay" class="form-control" placeholder="DD/MM/YYYY">
+                  <input class="col-4 col-lg-5 col-md-4 col-sm-4" type="text" style="background-color: var(--bg2); border:none;" name="ngay" class="form-control" placeholder="DD/MM/YYYY" value="<?php 
+                        $date = getdate();
+                        echo  $date['year'] . "/0" . $date['mon'] .  "/" . $date['mday']  ?>">
                   <select class="col-3 col-md-3 col-sm-3" name="gio">
                     <option value="7 giờ">7 giờ</option>
                     <option value="8 giờ">8 giờ</option>

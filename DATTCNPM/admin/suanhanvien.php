@@ -9,7 +9,7 @@
         $password = $_POST['password'];
         $chinhanh = $_POST['chinhanh'];
         $type = $_POST['type'];
-        $sql = "UPDATE `khachhang` SET password = '$password', chinhanh = '$chinhanh', type = '$type' WHERE id = $id";
+        $sql = "UPDATE `khachhang` SET password = md5('$password'), chinhanh = '$chinhanh', type = '$type' WHERE id = $id";
 
         $query = mysqli_query($conn, $sql);
         header('location: quanlynhanvien.php');

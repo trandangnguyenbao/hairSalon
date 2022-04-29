@@ -19,12 +19,16 @@
                 $username = "";
                 $id_giohang = "";
                 $tongtien = 0;
+                $ngaydat = "";
+                $ngaygiao = "";
                 // $soluong = "";
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if(isset($_POST["tenkh"])) { $tenkh = $_POST['tenkh']; }
                     if(isset($_POST["username"])) { $username = $_POST['username']; }  
                     if(isset($_POST["id_giohang"])) { $id_giohang =$_POST['id_giohang']; }
                     if(isset($_POST["tongtien"])) { $tongtien =$_POST['tongtien']; }
+                    if(isset($_POST["ngaydat"])) { $ngaydat =$_POST['ngaydat']; }
+                    if(isset($_POST["ngaygiao"])) { $ngaygiao =$_POST['ngaygiao']; }
                     $username = $_SESSION['user'];
                     $sql1 = "SELECT * FROM khachhang where username = $username";
                     $ketqua = $connect->query($sql1);
@@ -34,35 +38,18 @@
                     $ketqua2 = $connect->query($sql3);
                     $Row = $ketqua2->fetch_array(MYSQLI_ASSOC);
                     $id_giohang = $Row['id_giohang'];
-					$sql2 = "SELECT * FROM donhang WHERE id_giohang = '$id_giohang' && tenkh = '$tenkh'";
-					$ketqua1 = $connect->query($sql2);
-					$rows = $ketqua1->fetch_array(MYSQLI_ASSOC);
-					if($rows ==  0){
-                        // $id_giohang = $row['id_giohang'] + 1;
-                        // $id_giohang = $rows['id_giohang'] + 1;
-						$sql = " INSERT INTO donhang (id_giohang,tongtien,tenkh)
-						values ('$id_giohang','$tongtien', '$tenkh')";
+					
+					$sql = " INSERT INTO donhang (id_giohang,tongtien,tenkh, ngaydat, ngaygiao)
+					values ('$id_giohang','$tongtien', '$tenkh', '$ngaydat', '$ngaygiao')";
                         // move_uploaded_file($hinhanh_tmp, 'img/sanpham/'.$product_img);
-						$res = $connect->query($sql);
+					$res = $connect->query($sql);
 						// if($res == TRUE){
 						// 	$_SESSION['order'] = "<div class='success text-center'>Đơn hàng đã được đặt thành công.</div>";
 						// 	header('location:cart_order.php');
 						// }
-                }
-					else{
-                        // $id_giohang = $rows['id_giohang'];
-						$tongtien = $tongtien + $rows['tongtien'];
-						$sql = "update donhang set tenkh = '$tenkh' ,tongtien = '$tongtien', id_giohang = '$id_giohang' where tenkh = '$tenkh'";
-						$res = $connect->query($sql);
-						// if($res == TRUE){
-						// 	$_SESSION['order'] = "<div class='success text-center'>Đơn hàng đã được đặt thành công.</div>";
-						// 	header('location:cart_order.php');
-						// }
-					}
-				}
-				$connect->close();
+				    $connect->close();
 			
-            }?>   
+           } }?>   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,13 +72,15 @@
         <div class="container">
         <h3>Đơn Hàng</h3>
             <div class="row gy-5"> 
-                <div class="col-lg-9 shopping-cart">
+                <div class="col-lg-12 shopping-cart">
                     <table class="shopping__cart">
                         <tr>
-                            <th style="width: 12%;"><input type="checkbox" class="shopping__cart-item"></th>
-                            <th style="width: 100%;">Mã Giỏ Hàng</th>
+                            <th style="width: 30%;"><input type="checkbox" class="shopping__cart-item"></th>
+                            <th style="width: 20%;">Mã Giỏ Hàng</th>
+                            <th style="width: 20%;">Ngày Đặt Hàng</th>
+                            <th style="width: 20%;">Ngày Giao Dự Kiến</th>
                             <th style="width: 20%;">Tổng Tiền</th>
-                            <th style="width: 50px;">Tình Trạng</th>
+                            <th style="width: 3%;">Tình Trạng</th>
                             <th style="width: 5%;"></th>
                         </tr>
                         <?php
@@ -102,9 +91,9 @@
                             $results=mysqli_query($conn, "SELECT * FROM `khachhang` where username = $username");
                             $rows = mysqli_fetch_assoc($results);
                             $tenkh = $rows['hoten']; 
-                            $result=mysqli_query($conn, "SELECT * FROM `donhang` where tenkh = $tenkh");
+                            $result=mysqli_query($conn, "SELECT * FROM donhang where tenkh = '{$tenkh}'");
                             $row = mysqli_fetch_assoc($result);
-                            $totalRecords = mysqli_query($conn, "SELECT * FROM `donhang` where tenkh = $tenkh");
+                            $totalRecords = mysqli_query($conn, "SELECT * FROM donhang where tenkh ='{$tenkh}'");
                             $totalRecords = $totalRecords->num_rows;
                             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                             $limit = 8;
@@ -120,40 +109,25 @@
                             }
                             
                             $start = ($current_page - 1) * $limit;
-                            $result = mysqli_query($conn, "SELECT * FROM `donhang` where tenkh = $tenkh LIMIT $start, $limit");
+                            $result = mysqli_query($conn, "SELECT * FROM donhang where tenkh = '{$tenkh}'");
                             // $results = mysqli_query($conn, "SELECT * FROM `product` ");
                             $i=0;
                             while ($row = mysqli_fetch_assoc($result)){              
                             $i++;	
                         ?>
-                        <tr>
-                            <td><input type="checkbox" class="shopping__cart-item"></td>
-                            <td><?php echo $row['tenkh']?></td>
-                            <td><?php echo $row['id_giohang']?></td>
-                            <td><?php echo $row['tongtien']?></td>
+                        <tr style="color: #d5d5d5;">
+                            <td style="text-align: center;"><input type="checkbox" class="shopping__cart-item"></td>
+                            <td style="text-align: center;"><?php echo $row['id_giohang']?></td>
+                            <td style="text-align: center;"><?php echo $row['ngaydat']?></td>
+                            <td style="text-align: center;"><?php echo $row['ngaygiao']?></td>
+                            <td style="text-align: center;"><?php echo number_format($row['tongtien'], 0, ",", ".")?></td>
+                            <td style="text-align: center;"><?php echo $row['tinhtrang']?></td>
                             <td>
                                 <a href="delete_donhang.php?id=<?php echo $row['id']?>"><i class="ri-delete-bin-5-line"></i></a>
                             </td>
                         </tr>
                         <?php }}?>
                     </table>
-                </div>
-                <div class="col-lg-3 thongtindonhang">
-                    <h6>THÔNG TIN ĐƠN HÀNG</h6>
-                    <hr>
-                    <form method="POST" action="" >
-                    <ul class="product-cost">
-                        <li class="product-cost"><B>Tạm tính</B></li>
-                        <li class="product-cost"><p><?php echo number_format($tamtinh, 0, ",", ".")?>đ</p></li>
-                    </ul>
-                    <hr>
-                    <ul class="product-cost" style="display: flex; justify-content: space-between;">
-                        <li class="product-cost"><b>Tổng Tiền</b></li>
-                        <li class="product-cost"><input name="tongtien" type="text" style="padding: 0px; margin:0px; background-color: transparent;  width: 70px;   " value="<?php echo number_format($thanhtien, 0, ",", ".")?>">đ</li>
-                    </ul>
-                    <hr>
-                    <input type="hidden" value="TIẾN HÀNH ĐẶT HÀNG" name="dathang">
-                    </form>
                 </div>
                 <h1 class="text-color">Sản Phẩm Liên Quan</h1>
                 <div class="row gy-5 shopping-cartslide">
