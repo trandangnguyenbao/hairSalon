@@ -8,12 +8,12 @@ if (!isset($_SESSION["user"])) {
     include 'config.php';
     if(isset($_POST['sbm']) && !empty($_POST['search'])){
         $search = $_POST['search'];
-        $sql = "SELECT * FROM sanpham WHERE product_name LIKE '%$search%'";
+        $sql = "SELECT * FROM `sanpham` WHERE product_name LIKE '%$search%'";
         $res = mysqli_query($conn, $sql);
         $total_prd = mysqli_num_rows($res);
 
     }else{
-        $sql = "SELECT * FROM sanpham";
+        $sql = "SELECT * FROM `sanpham`";
         $query = mysqli_query($conn, $sql);
     }
 

@@ -215,7 +215,7 @@ if (!isset($_SESSION["user"])) {
                                     <th scope="row"><?php echo $i++ ?></th>
                                    <td> <a href="quanlytungloai.php?id=<?php echo $row['id']?>" style="color:#000;"><?php echo $row['name']?></a></td>
                                     <td><img src="../img/sanpham/<?php echo $row["img"]?>" alt="" style="height: 160px; width: 150px;"></td>
-                                    <td><?php echo $row['sosp']?></td>
+                                    <td><?php echo $row['soluong']?></td>
                                     <td><?php echo $row['descript']?></td>
                                     <td>
                                         <a class="btn btn-warning" style=" line-height: 40px; padding: 0px 20px; background-color:#ffc107; border-radius: 3px" href="sualoaihang.php?id=<?php echo $row['id']?>">Sửa</a>

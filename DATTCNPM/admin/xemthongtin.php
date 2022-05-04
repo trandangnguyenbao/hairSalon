@@ -157,8 +157,6 @@ if (isset($_POST['sbm'])){
                     ?>
                         <label for="" style="width:100px;  font-weight: bolder;">Tài Khoản:</label>
                         <input type="text" value="<?php echo $row['username']?>" disabled style="font-size: 20px; color:#000;height: 40px; width:626px ;margin-bottom: 10px;"><br>
-                        <label for="" style="width:100px; font-weight: bolder;">Mật Khẩu:</label>
-                        <input type="text"  name="password" value="<?php echo $row['password']?>" style="font-size: 20px; color:#000;height: 40px; width:626px ;margin-bottom: 10px; background-color: #d4d4d4; border: none; outline: none;"><br>
                         <label for="" style="width:100px; font-weight: bolder;">Họ Và Tên:</label>
                         <input type="text" disabled value="<?php echo $row['hoten']?>" style="font-size: 20px; color:#000;height: 40px; width:626px ;margin-bottom: 10px;"><br>
                         <label for="" style="width:100px; font-weight: bolder;">Ngày Sinh:</label>
